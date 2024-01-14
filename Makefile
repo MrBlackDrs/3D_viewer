@@ -80,7 +80,7 @@ cleanall:
 	rm -rf *.o *.info doxygen ../build/Calculator_v1.0.app *.a smart_calc_qt/smart_calc_qt.app report a.out $(TESTS) lexeme_parser *.gcda *.gcno coverage.info coverage_html doxygen valgrind.out build*
 
 andrey:
-	gcc Andrey.c athens_transform.c parser.c -o andrey_test
+	gcc Andrey.c -g 3DViewer.c parser.c -o andrey_test
 	./andrey_test
 
 gleb:

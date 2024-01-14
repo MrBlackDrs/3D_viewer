@@ -20,17 +20,37 @@ typedef struct {
 } polygon; // полигон, одна строчка f
 
 typedef struct{
-    point *coords;
+    point *vertex; // тут хранятся все вершины
+    polygon **p; // тут хранятся все полигоны
+    int amount_polygon; 
+    int amount_vertex;
     point coord_min; // содержит x_min,y_min,z_min
     point coord_max;
-} vertex; // тут хранятся все вершины
-
-typedef struct{
-    vertex v; // тут хранятся все вершины
-    polygon *p; // тут хранятся все полигоны
-    int *amount_polygon; 
-    int *amount_vertex;
 } object; // весь 
 
+
+// создание точки
 void init_point(double x, double y, double z, point *point);
-void init_polygon(int *edges, int amount_edges, polygon *polygon);
+// создание полигона (1 строчка из файла)
+void init_polygon(int *edges, int amount_edges, polygon **p);
+// добавление полигона в общий список
+void add_polygon(int *edges, int amount_edges, object *object);
+// удаление полигона
+void destroy_polygon(polygon *polygon);
+// создание нулевой вершины, не участвует в построении графика
+void init_vertex(object *object);
+// добавление вершины (1 строчка из файла)
+void add_vertex(point dot, object *object);
+// удаление списка всех вершин
+void destroy_vertex(object *object);
+// создание структуры объекта, который хранит все
+void init_object(object *object);
+// удаление объекта
+ void destroy_object(object *object);
+ // распечатывает объект
+ void print_object(object *obj);
+
+
+/*parser*/
+
+void readfile(char *filename, object *object);
