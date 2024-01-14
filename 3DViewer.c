@@ -37,7 +37,6 @@ void destroy_polygon(polygon *polygon) {
 
 // создание нулевой вершины, не участвует в построении графика
 void init_vertex(object *object) {
-    // *vertex = (vertex*) malloc(sizeof(vertex));
     object->vertex = (point *) calloc(sizeof(point), 1);
     init_point(0, 0, 0, object->vertex);
     init_point(0, 0, 0, &object->coord_max);
@@ -89,10 +88,10 @@ void init_object(object *object) {
     for (int i = 0; i < obj->amount_vertex; i++) {
         printf("v %.2lf %.2lf %.2lf\n", obj->vertex[i].x, obj->vertex[i].y, obj->vertex[i].z);
     }
-    // for (int i = 0; i < obj->amount_polygon; i++) {
-    //     printf("f ");
-    //     for (int j = 0; j < obj->p[i]->amount_edges; j++)
-    //         printf("%d ", obj->p[i]->edges[j]);
-    //     printf("\n");
-    // }
+    for (int i = 1; i < obj->amount_polygon; i++) {
+        printf("f ");
+        for (int j = 0; j < obj->p[i]->amount_edges; j++)
+            printf("%d ", obj->p[i]->edges[j]);
+        printf("\n");
+    }
  }
