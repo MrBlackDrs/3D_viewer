@@ -89,4 +89,10 @@ void init_object(object *object) {
     for (int i = 0; i < obj->amount_vertex; i++) {
         printf("v %.2lf %.2lf %.2lf\n", obj->vertex[i].x, obj->vertex[i].y, obj->vertex[i].z);
     }
+    // for (int i = 0; i < obj->amount_polygon; i++) {
+    //     printf("f ");
+    //     for (int j = 0; j < obj->p[i]->amount_edges; j++)
+    //         printf("%d ", obj->p[i]->edges[j]);
+    //     printf("\n");
+    // }
  }

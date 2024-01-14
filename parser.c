@@ -16,7 +16,26 @@ void readfile(char *filename, object *object) {
                 add_vertex(dot, object);
             }
             else if (strncmp(str, "f ", 2) == 0) {
-                sscanf(str, "f %lf %lf %lf", &x, &y, &z);
+                char *vertex_index = NULL;
+                vertex_index = strtok(str + 2, " ");
+                int digit = 0;
+                int len = 1, cur_index = 0;
+                int *str_index = calloc(sizeof(int), 1);
+                while (vertex_index != NULL) {
+                    digit = atoi(vertex_index);
+                    if (digit) {
+                        if (cur_index == len) {
+                            str_index = (int *) realloc(str_index, len + 1);
+                            len++;
+                        }
+                        str_index[cur_index] = digit;
+                        cur_index++;
+                    }
+                    else
+                        printf("incorrect obj file\n");
+                    vertex_index = strtok(NULL, " ");
+                }
+                add_polygon(str_index, len, object);
             }
             char str[256] = "";
             // printf("%s\n", str);
