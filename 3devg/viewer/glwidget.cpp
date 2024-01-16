@@ -1,5 +1,6 @@
 #include "glwidget.h"
 
+
 GlWidget::GlWidget(QWidget *parent) : QOpenGLWidget{parent} {}
 
 // удаление данных объекта (если он остался от предыдущих запусков)
@@ -122,6 +123,6 @@ void GlWidget::build_points() {
 //   }
 // }
 
-void GlWidget::mousePressEvent(QMouseEvent *event) {
-  cur_pos = event->globalPosition().toPoint();
-}
+// void GlWidget::mousePressEvent(QMouseEvent *event) {
+//   cur_pos = event->globalPosition().toPoint();
+// }
