@@ -4,7 +4,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
 
-include(3rdparty/qtgifimage/src/gifimage/qtgifimage.pri)
+# include(3rdparty/qtgifimage/src/gifimage/qtgifimage.pri)
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -14,11 +14,13 @@ SOURCES += \
     ../../3DViewer.c \
     ../../athens_transform.c \
     ../../parser.c \
+    glwidget.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     ../../3DViewer.h \
+    glwidget.h \
     mainwindow.h
 
 FORMS += \

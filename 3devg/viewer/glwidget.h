@@ -2,8 +2,8 @@
 #define GLWIDGET_H
 
 #define GL_SILENCE_DEPRECATION
-#include <GLUT/glut.h>
-#include <OpenGL/gl.h>
+// #include <GLUT/glut.h>
+// #include <OpenGL/gl.h>
 
 #include <QMessageBox>
 #include <QOpenGLWidget>
@@ -13,8 +13,8 @@
 #include <iostream>
 
 extern "C" {
-#include "../../modules/affine_transformations.h"
-#include "../../modules/model_loading.h"
+// #include "../../modules/athens_transform.h"
+#include "../../3DViewer.h"
 }
 
 class GlWidget : public QOpenGLWidget, protected QOpenGLFunctions {
@@ -41,7 +41,7 @@ class GlWidget : public QOpenGLWidget, protected QOpenGLFunctions {
 
   // 3D OBJ DATA
   char *filename;
-  obj_data data = {0, NULL, 0, NULL};
+  object data;
 
   // OPENGL
   void initializeGL() override;
