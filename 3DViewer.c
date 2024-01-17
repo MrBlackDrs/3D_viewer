@@ -10,7 +10,7 @@ void init_point(double x, double y, double z, point *point){
 // создание полигона (1 строчка из файла)
 void init_polygon(int *edges, int amount_edges, polygon **p){
     *p = malloc(sizeof(polygon*));
-    (*p)->edges = (int*) calloc(sizeof(int), amount_edges);
+    (*p)->edges = (int*) calloc(amount_edges, sizeof(int));
     for (int i = 0; i < amount_edges; i++) {
         (*p)->edges[i] = edges[i];
     }
@@ -37,7 +37,7 @@ void destroy_polygon(polygon *polygon) {
 
 // создание нулевой вершины, не участвует в построении графика
 void init_vertex(object *object) {
-    object->vertex = (point *) calloc(sizeof(point), 1);
+    object->vertex = (point *) calloc(1, sizeof(point));
     init_point(0, 0, 0, object->vertex);
     init_point(0, 0, 0, &object->coord_max);
     init_point(0, 0, 0, &object->coord_min);
@@ -67,10 +67,10 @@ void destroy_vertex(object *object) {
 void init_object(object *object) {
     init_vertex(object);
     int zeros[3] = {0};
-    object->p = (polygon**) calloc(sizeof(polygon**), 1);
+    object->p = (polygon**) calloc(1, sizeof(polygon*));
     init_polygon(zeros, 3, &object->p[0]);
-    object->amount_polygon = 1;
-    object->amount_vertex = 1;
+    object->amount_polygon = 0;
+    object->amount_vertex = 0;
 }
 
 // удаление объекта

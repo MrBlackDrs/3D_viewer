@@ -14,8 +14,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/mutteria/Desktop/group_projects/3D_viewer",
-      "program": "/Users/mutteria/Desktop/group_projects/3D_viewer/build/Debug/outDebug"
+      "cwd": "/Users/zoraidad/Desktop/projects/myprojects/3D_viewer",
+      "program": "/Users/zoraidad/Desktop/projects/myprojects/3D_viewer/build/Debug/outDebug"
     }
   ]
 }
