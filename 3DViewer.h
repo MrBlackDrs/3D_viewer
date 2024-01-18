@@ -21,7 +21,7 @@ typedef struct {
 
 typedef struct{
     point *vertex; // тут хранятся все вершины
-    polygon **p; // тут хранятся все полигоны
+    polygon *p; // тут хранятся все полигоны
     int amount_polygon; 
     int amount_vertex;
     point coord_min; // содержит x_min,y_min,z_min
@@ -32,7 +32,7 @@ typedef struct{
 // создание точки
 void init_point(double x, double y, double z, point *point);
 // создание полигона (1 строчка из файла)
-void init_polygon(int *edges, int amount_edges, polygon **p);
+void init_polygon(int *edges, int amount_edges, object *object, int pos);
 // добавление полигона в общий список
 void add_polygon(int *edges, int amount_edges, object *object);
 // удаление полигона

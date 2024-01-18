@@ -82,6 +82,7 @@ cleanall:
 andrey:
 	gcc Andrey.c -g 3DViewer.c parser.c -o andrey_test
 	./andrey_test
+	valgrind -s --trace-children=yes --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all ./andrey_test
 
 gleb:
 	gcc Gleb.c athens_transform.c parser.c -o gleb_test

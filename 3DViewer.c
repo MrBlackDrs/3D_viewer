@@ -8,20 +8,20 @@ void init_point(double x, double y, double z, point *point){
 }
 
 // создание полигона (1 строчка из файла)
-void init_polygon(int *edges, int amount_edges, polygon **p){
-    *p = malloc(sizeof(polygon*));
-    (*p)->edges = (int*) calloc(amount_edges, sizeof(int));
+void init_polygon(int *edges, int amount_edges, object *object, int pos){
+    // *p = malloc(sizeof(polygon*));
+    (object->p[pos]).edges = (int*) calloc(amount_edges, sizeof(int));
     for (int i = 0; i < amount_edges; i++) {
-        (*p)->edges[i] = edges[i];
+        (object->p[pos]).edges[i] = edges[i];
     }
-    (*p)->amount_edges = amount_edges;
+    (object->p[pos]).amount_edges = amount_edges;
 }
 
 // добавление полигона в общий список
 void add_polygon(int *edges, int amount_edges, object *object) {
-    object->p = (polygon**) realloc(object->p, object->amount_polygon + 1);
+    object->p = (polygon*) realloc(object->p, object->amount_polygon + 1);
     if (object->p != NULL) {
-        init_polygon(edges, amount_edges, &object->p[object->amount_polygon]);
+        init_polygon(edges, amount_edges, object, object->amount_polygon);
         object->amount_polygon++;
     }
     else 
@@ -65,18 +65,19 @@ void destroy_vertex(object *object) {
 
 // создание структуры объекта, который хранит все
 void init_object(object *object) {
+    object->vertex = (point *) calloc(1, sizeof(point));
     init_vertex(object);
-    int zeros[3] = {0};
-    object->p = (polygon**) calloc(1, sizeof(polygon*));
-    init_polygon(zeros, 3, &object->p[0]);
-    object->amount_polygon = 0;
-    object->amount_vertex = 0;
+    int zeros[3] = {1};
+    object->p = (polygon*) calloc(1, sizeof(polygon));
+    init_polygon(zeros, 3, object, 0);
+    object->amount_polygon = 1;
+    object->amount_vertex = 1;
 }
 
 // удаление объекта
  void destroy_object(object *object) {
     for (int i = 0; i < object->amount_polygon; i++) {
-        destroy_polygon(object->p[i]);
+        destroy_polygon(&object->p[i]);
     }
     destroy_vertex(object);
     object->amount_polygon = 0;
@@ -88,10 +89,10 @@ void init_object(object *object) {
     for (int i = 0; i < obj->amount_vertex; i++) {
         printf("v %.2lf %.2lf %.2lf\n", obj->vertex[i].x, obj->vertex[i].y, obj->vertex[i].z);
     }
-    for (int i = 1; i < obj->amount_polygon; i++) {
+    for (int i = 0; i < obj->amount_polygon; i++) {
         printf("f ");
-        for (int j = 0; j < obj->p[i]->amount_edges; j++)
-            printf("%d ", obj->p[i]->edges[j]);
+        for (int j = 0; j < obj->p[i].amount_edges; j++)
+            printf("%d ", obj->p[i].edges[j]);
         printf("\n");
     }
  }
