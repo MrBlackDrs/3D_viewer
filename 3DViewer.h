@@ -20,7 +20,7 @@ typedef struct {
 } polygon; // полигон, одна строчка f
 
 typedef struct{
-    point *vertex; // тут хранятся все вершины
+    double *vertex; // тут хранятся все вершины
     polygon *p; // тут хранятся все полигоны
     int amount_polygon; 
     int amount_vertex;
@@ -32,19 +32,19 @@ typedef struct{
 // создание точки
 void init_point(double x, double y, double z, point *point);
 // создание полигона (1 строчка из файла)
-void init_polygon(int *edges, int amount_edges, object *object, int pos);
+// void init_polygon(int *edges, int amount_edges, object *object, int pos);
 // добавление полигона в общий список
-void add_polygon(int *edges, int amount_edges, object *object);
+void add_polygon(int *edges, int amount_edges, object *object, int pos);
 // удаление полигона
 void destroy_polygon(polygon *polygon);
 // создание нулевой вершины, не участвует в построении графика
 void init_vertex(object *object);
 // добавление вершины (1 строчка из файла)
-void add_vertex(point dot, object *object);
+void add_vertex(point dot, object *object, int index);
 // удаление списка всех вершин
 void destroy_vertex(object *object);
 // создание структуры объекта, который хранит все
-void init_object(object *object);
+void init_object(object *object, int amount_v, int amount_p);
 // удаление объекта
  void destroy_object(object *object);
  // распечатывает объект
@@ -53,4 +53,7 @@ void init_object(object *object);
 
 /*parser*/
 
-void readfile(char *filename, object *object);
+// находим количество вершин и полигонов в файле
+void readfile_to_count(char *filename, object *object);
+// заполняем структуру данными из файла
+void readfile_to_parse(char *filename, object *object);
