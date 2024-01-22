@@ -59,7 +59,7 @@ void readfile_to_parse(char *filename, object *object) {
                 }
                 add_polygon(str_index, len, object, count_polygons);
                 count_polygons++;
-                // free(str_index);
+                free(str_index);
             }
             // printf("%s\n", str);
             // работа со строкой и обновление структуры object
