@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -32,8 +33,7 @@ void MainWindow::on_openFilePushButton_clicked()
   QString QString_file_name = QFileDialog::getOpenFileName(this, "Open File", QDir::homePath(), "OBJ File (*.obj)");
   ui->filePathLabel->setText(QString_file_name);
   std::string std_filename = QString_file_name.toStdString();
-  ui->widget->filename = new char[std_filename.length() + 1];
-  strcpy(ui->widget->filename, std_filename.c_str());
-
-  ui->widget->parse();
+  ui->animationViewer->filename = new char[std_filename.length() + 1];
+  strcpy(ui->animationViewer->filename, std_filename.c_str());
+  ui->animationViewer->parse();
 }

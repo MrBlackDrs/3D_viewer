@@ -16,6 +16,12 @@ glView::glView(QWidget *parent)
 //    tmr.start(100);
 }
 
+glView::~glView()
+{
+    destroy_object(this->obj);
+}
+
+
 void glView::initializeGL(){
     glEnable(GL_DEPTH_TEST);
 }
@@ -44,9 +50,9 @@ void glView::paintGL(){
     glTranslatef(x,y,z);
     glRotatef(xRot,1,0,0);
     glRotatef(yRot,0,1,0);
-    drawCube(0.5);
-
-
+    if(obj!=NULL){
+        drawObject();
+    }
 //    // 3 = кол-во переменных на вершину, дальше тип, далее смещение и адрес массива
 //    glVertexPointer(3,GL_FLOAT, 0, &arr);
 //    // разрешаем opengl использовать вершинный буфер
@@ -56,68 +62,54 @@ void glView::paintGL(){
 //        glDrawArrays(GL_TRIANGLES, 0 ,3);
 //    glDisableClientState(GL_VERTEX_ARRAY);
 
-////    glBegin(GL_TRIANGLES);
-////    glColor3d(1,0,0);
-////    glVertex3d(0, 0, -1.5);
-////    glVertex3d(1 , 0, -1.5);
-////    glVertex3d(0, 1, -1.5);
-////    glEnd();
+//    glBegin(GL_TRIANGLES);
+//    glColor3d(1,0,0);
+//    glVertex3d(0, 0, -1.5);
+//    glVertex3d(1 , 0, -1.5);
+//    glVertex3d(0, 1, -1.5);
+//    glEnd();
 }
 void glView::changeZ(int value){
     z=value/10.0;
-    qDebug() << z;
     update();
 }
 void glView::changeX(int value){
     x=value/10.0;
-    qDebug() << x;
     update();
 }
 void glView::changeY(int value){
     y=value/10.0;
-    qDebug() << y;
     update();
 }
-void glView:: drawCube(float a){
-    float ver_cub[] = {
-        -a,-a,a,  a,-a,a,    a,a,a,  -a,a,a, //передняя
-//        a,-a,a,    a,-a,-a,    a,a,-a,  a,a,a, //правая
-//        a,-a,a,    a,-a,-a,    -a,-a,-a,  -a,-a,a, //нижняя
-//        a,-a,-a,    -a,-a,-a,    -a,a,-a,  a,a,-a, //задняя
-//        -a,-a,-a,    -a,a,-a,    -a,a,a,  -a,-a,a, //левая
-//        a,a,a,    a,a,-a,    -a,a,-a,  -a,a,a, //верхняя
-    };
-    float ver1_cub[] = {
-         a,-a,a,    a,-a,-a,    a,a,-a,  a,a,a, //правая
-    };
-    float color_arr[] = {
-        1,0,0,    1,0,0,    1,0,0,  1,0,0, //передняя
-//        0,0,1,    0,0,1,    0,0,1,  0,0,1, //правая
-//        1,0,1,    1,0,1,    1,0,1,  1,0,1, //нижняя
-//        0,1,1,    0,1,1,    0,1,1,  0,1,1, //задняя
-//        1,1,0,    1,1,0,    1,1,0,  1,1,0, //левая
-//        1,0.5,0.5,  1,0.5,0.5,  1,0.5,0.5,  1,0.5,0.5, //верхняя
-    };
-    float color1_arr[] = {
-        0,0,1,    0,0,1,    0,0,1,  0,0,1, //правая
-    };
-      glVertexPointer(3,GL_FLOAT, 0, &ver_cub);
-      glEnableClientState(GL_VERTEX_ARRAY);
-      glColorPointer(3, GL_FLOAT, 0, &color_arr);
-      glEnableClientState(GL_COLOR_ARRAY);
-        glDrawArrays(GL_POLYGON,0,4);
-//        glDrawArrays(GL_QUADS,0,24);
-      glDisableClientState(GL_COLOR_ARRAY);
-      glDisableClientState(GL_VERTEX_ARRAY);
-
-      glVertexPointer(3,GL_FLOAT, 0, &ver1_cub);
-      glEnableClientState(GL_VERTEX_ARRAY);
-      glColorPointer(3, GL_FLOAT, 0, &color1_arr);
-      glEnableClientState(GL_COLOR_ARRAY);
-           glDrawArrays(GL_POLYGON,0,4);
-//        glDrawArrays(GL_QUADS,0,24);
-      glDisableClientState(GL_COLOR_ARRAY);
-      glDisableClientState(GL_VERTEX_ARRAY);
+void glView:: drawObject(){
+//    glBegin(GL_TRIANGLES);
+//    glColor3d(1,0,0);
+//    glVertex3d(0, 0, -0.5);
+//    glVertex3d(1 , 0, -0.5);
+//    glVertex3d(0, 1, -0.5);
+//    glEnd();
+    for (int i = 1; i < 2; i++) {
+        glBegin(GL_LINES);
+        for(int j = 0; j < obj->p[i].amount_edges; j++){
+            glColor3d(1,0,0);
+            glVertex3d(obj->vertex[obj->p[i].edges[j]*3], obj->vertex[obj->p[i].edges[j]*3 + 1], obj->vertex[obj->p[i].edges[j]*3 + 2]);
+            qDebug() <<"n" << obj->p[i].edges[j] << "j" << j;
+            qDebug() <<"x" << obj->vertex[(obj->p[i].edges[j])*3];
+            qDebug() << "y" << obj->vertex[obj->p[i].edges[j]*3+1];
+            qDebug() << "z" << obj->vertex[obj->p[i].edges[j]*3+2];
+//            if(i<obj->amount_vertex-1){
+//                glVertex3d(obj->vertex[(i+1)*3], obj->vertex[(i+1)*3+1], obj->vertex[(i+1)*3+2]);
+//            }else{
+//                glVertex3d(obj->vertex[3], obj->vertex[4], obj->vertex[5]);
+//            }
+        }
+        glEnd();
+    }
+//    glLineWidth(2.0);
+//    glColor3f(1,0,0);
+//    glDrawElements(GL_LINES, (obj->amount_polygon-1) * 2, GL_UNSIGNED_INT,
+//                     &obj->p[1]);  // multiply by two because we draw
+//                                                // lines that close
 }
 void glView::mousePressEvent(QMouseEvent* mo){
     mPos = mo->pos();
@@ -127,6 +119,16 @@ void glView::mouseMoveEvent(QMouseEvent* mo){
     xRot=2/M_PI*(mo->pos().y() - mPos.y());
     yRot=2/M_PI*(mo->pos().x() - mPos.x());
     update();
+}
+void glView::parse(){
+    destroy_object(obj);
+    obj = (object *) (calloc(1, sizeof(object)));
+    readfile_to_count(filename, obj);
+    readfile_to_parse(filename, obj);
+    qDebug() << obj->amount_polygon;
+    paintGL();
+    //    print_object(obj);
+
 }
 
 

@@ -10,6 +10,18 @@
 #pragma comment(lib, "openg132.lib")
 #pragma comment(lib, "GlU32.lib")
 
+#ifdef __cplusplus
+
+extern "C" {
+#endif
+
+#include "../3DViewer.h"
+
+#ifdef __cplusplus
+}
+#endif
+
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class glView; }
 QT_END_NAMESPACE
@@ -22,15 +34,19 @@ private:
     float xRot, yRot, zRot;
     QPoint mPos;
     QTimer tmr;
-    void drawCube(float a);
     void mousePressEvent(QMouseEvent*) override;
     void mouseMoveEvent(QMouseEvent*) override;
     void initializeGL() override;
     void resizeGL(int w, int h) override;
     void paintGL() override;
+    object* obj = NULL;
 
 public:
     glView(QWidget *parent = nullptr);
+    ~glView();
+    void parse();
+    void drawObject();
+    char *filename;
 private:
     Ui::glView *ui;
 public slots:

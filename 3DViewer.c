@@ -58,14 +58,17 @@ void init_object(object *object, int amount_v, int amount_p) {
 
 // удаление объекта
  void destroy_object(object *object) {
-    for (int i = 0; i < object->amount_polygon; i++) {
-        destroy_polygon(&object->p[i]);
+    if (object != NULL){
+        for (int i = 0; i < object->amount_polygon; i++) {
+            destroy_polygon(&object->p[i]);
+        }
+        if (object->p)
+            free(object->p);
+        destroy_vertex(object);
+        object->amount_polygon = 0;
+        object->amount_vertex = 0;
+        free(object);
     }
-    free(object->p);
-    destroy_vertex(object);
-    object->amount_polygon = 0;
-    object->amount_vertex = 0;
-    free(object);
  }
 
 // распечатывает объект
