@@ -80,9 +80,9 @@ cleanall:
 	rm -rf *.o *.info doxygen ../build/Calculator_v1.0.app *.a smart_calc_qt/smart_calc_qt.app report a.out $(TESTS) lexeme_parser *.gcda *.gcno coverage.info coverage_html doxygen valgrind.out build*
 
 andrey:
-	gcc Andrey.c -g 3DViewer.c parser.c -o andrey_test
+	gcc Andrey.c -g 3DViewer.c parser.c athens_transform.c -o andrey_test
 	./andrey_test
-	valgrind -s --trace-children=yes --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all ./andrey_test
+#	valgrind -s --trace-children=yes --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all ./andrey_test
 
 gleb:
 	gcc Gleb.c athens_transform.c parser.c -o gleb_test

@@ -88,20 +88,16 @@ void glView:: drawObject(){
 //    glVertex3d(1 , 0, -0.5);
 //    glVertex3d(0, 1, -0.5);
 //    glEnd();
-    for (int i = 1; i < 2; i++) {
-        glBegin(GL_LINES);
+    for (int i = 1; i < obj->amount_polygon; i++) {
+        glBegin(GL_LINE_STRIP);
         for(int j = 0; j < obj->p[i].amount_edges; j++){
-            glColor3d(1,0,0);
+            glColor3d(1,1,1);
             glVertex3d(obj->vertex[obj->p[i].edges[j]*3], obj->vertex[obj->p[i].edges[j]*3 + 1], obj->vertex[obj->p[i].edges[j]*3 + 2]);
-            qDebug() <<"n" << obj->p[i].edges[j] << "j" << j;
-            qDebug() <<"x" << obj->vertex[(obj->p[i].edges[j])*3];
-            qDebug() << "y" << obj->vertex[obj->p[i].edges[j]*3+1];
-            qDebug() << "z" << obj->vertex[obj->p[i].edges[j]*3+2];
-//            if(i<obj->amount_vertex-1){
-//                glVertex3d(obj->vertex[(i+1)*3], obj->vertex[(i+1)*3+1], obj->vertex[(i+1)*3+2]);
-//            }else{
-//                glVertex3d(obj->vertex[3], obj->vertex[4], obj->vertex[5]);
-//            }
+            if (j < obj->p[i].amount_edges - 1) glVertex3d(obj->vertex[obj->p[i].edges[j+1]*3], obj->vertex[obj->p[i].edges[j+1]*3 + 1], obj->vertex[obj->p[i].edges[j+1]*3 + 2]);
+//            qDebug() <<"n" << obj->p[i].edges[j] << "j" << j;
+//            qDebug() <<"x" << obj->vertex[(obj->p[i].edges[j])*3];
+//            qDebug() << "y" << obj->vertex[obj->p[i].edges[j]*3+1];
+//            qDebug() << "z" << obj->vertex[obj->p[i].edges[j]*3+2];
         }
         glEnd();
     }

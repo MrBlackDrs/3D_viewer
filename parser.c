@@ -67,5 +67,6 @@ void readfile_to_parse(char *filename, object *object) {
             memset(str,0,sizeof(str));
         }
         fclose(f);
+        normalize(object);
     }
 }

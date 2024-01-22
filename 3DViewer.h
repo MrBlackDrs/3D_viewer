@@ -57,3 +57,5 @@ void init_object(object *object, int amount_v, int amount_p);
 void readfile_to_count(char *filename, object *object);
 // заполняем структуру данными из файла
 void readfile_to_parse(char *filename, object *object);
+// нормализуем считанный объект (чтобы занимал область от -1 до 1)
+void normalize(object *obj);
