@@ -1,14 +1,19 @@
 #include "glview.h"
-#include "ui_glview.h"
+#include "ui_mainwindow.h"
 
 glView::glView(QWidget *parent)
     : QOpenGLWidget(parent)
 {
     setWindowTitle("3DViewer");
     setGeometry(400, 200, 800, 600);
-    z=0;
-    connect(&tmr, SIGNAL(timeout()), this, SLOT(changeZ()));
-    tmr.start(100);
+    z=-2;
+    x=0;
+    y=0;
+//    connect(w, SIGNAL(on_horizontalSliderShiftZ_valueChanged()), this, SLOT(changeZ()));
+    //connect(ссылка на отправителя, функция-триггер(отправителя), ссылка на получателя(в данном случае этот же класс), функция-обработчик события)
+
+//    connect(&tmr, SIGNAL(timeout()), this, SLOT(changeZ()));
+//    tmr.start(100);
 }
 
 void glView::initializeGL(){
@@ -28,7 +33,7 @@ void glView::resizeGL(int w, int h){
 
 }
 void glView::paintGL(){
-    glClearColor(0.25,0.25,0.25,0);
+    glClearColor(0.25,0.25,0.25,1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     //ВИДОВАЯ МАТРИЦА (GL_MODELVIEW)
     glMatrixMode(GL_MODELVIEW);
@@ -36,7 +41,7 @@ void glView::paintGL(){
     glLoadIdentity();
     //ПОВЕРНУТЬ СИС-МУ КООРДИНАТ НА КАКОЙ-ТО УГОЛ ПО ОСИ Z, тк 1 для Z
 //    glRotatef(90,0,0,1);
-    glTranslatef(0,0,-2);
+    glTranslatef(x,y,z);
     glRotatef(xRot,1,0,0);
     glRotatef(yRot,0,1,0);
     drawCube(0.5);
@@ -58,8 +63,19 @@ void glView::paintGL(){
 ////    glVertex3d(0, 1, -1.5);
 ////    glEnd();
 }
-void glView::changeZ(){
-    z+=0.01;
+void glView::changeZ(int value){
+    z=value/10.0;
+    qDebug() << z;
+    update();
+}
+void glView::changeX(int value){
+    x=value/10.0;
+    qDebug() << x;
+    update();
+}
+void glView::changeY(int value){
+    y=value/10.0;
+    qDebug() << y;
     update();
 }
 void glView:: drawCube(float a){
@@ -112,3 +128,5 @@ void glView::mouseMoveEvent(QMouseEvent* mo){
     yRot=2/M_PI*(mo->pos().x() - mPos.x());
     update();
 }
+
+

@@ -1,10 +1,12 @@
 #ifndef GLVIEW_H
 #define GLVIEW_H
 
+#include <QDebug>
 #include <QWidget>
 #include <QOpenGLWidget>
 #include <QTimer>
 #include <QMouseEvent>
+#include <QFileDialog>
 #pragma comment(lib, "openg132.lib")
 #pragma comment(lib, "GlU32.lib")
 
@@ -16,7 +18,7 @@ class glView : public QOpenGLWidget
 {
     Q_OBJECT
 private:
-    float z;
+    float z,x,y;
     float xRot, yRot, zRot;
     QPoint mPos;
     QTimer tmr;
@@ -32,6 +34,8 @@ public:
 private:
     Ui::glView *ui;
 public slots:
-    void changeZ();
+    void changeZ(int value);
+    void changeY(int value);
+    void changeX(int value);
 };
 #endif // GLVIEW_H
