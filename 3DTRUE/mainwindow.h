@@ -23,6 +23,7 @@ private slots:
     void on_horizontalSliderShiftX_valueChanged(int value);
     void on_horizontalSliderShiftY_valueChanged(int value);
     void on_openFilePushButton_clicked();
+    void on_horizontalSliderShiftX_2_valueChanged(int value);
 
 private:
     Ui::MainWindow *ui;

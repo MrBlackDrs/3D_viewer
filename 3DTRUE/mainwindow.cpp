@@ -28,6 +28,11 @@ void MainWindow::on_horizontalSliderShiftY_valueChanged(int value)
     ui->animationViewer->changeY(value);
 }
 
+void MainWindow::on_horizontalSliderShiftX_2_valueChanged(int value)
+{
+    ui->animationViewer->changeX_2(value);
+}
+
 void MainWindow::on_openFilePushButton_clicked()
 {
   QString QString_file_name = QFileDialog::getOpenFileName(this, "Open File", QDir::homePath(), "OBJ File (*.obj)");

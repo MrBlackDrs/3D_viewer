@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1197</width>
+    <height>609</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
      <rect>
       <x>20</x>
       <y>20</y>
-      <width>211</width>
-      <height>173</height>
+      <width>201</width>
+      <height>111</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -94,32 +94,6 @@
        </property>
       </widget>
      </item>
-    </layout>
-    <zorder>label</zorder>
-    <zorder>horizontalSliderShiftX</zorder>
-    <zorder>horizontalSliderShiftY</zorder>
-    <zorder>label_2</zorder>
-   </widget>
-   <widget class="glView" name="animationViewer">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>10</y>
-      <width>551</width>
-      <height>401</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>200</y>
-      <width>61</width>
-      <height>171</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
       <widget class="QLabel" name="label_3">
        <property name="text">
@@ -157,17 +131,33 @@
         <number>-16</number>
        </property>
        <property name="orientation">
-        <enum>Qt::Vertical</enum>
+        <enum>Qt::Horizontal</enum>
        </property>
       </widget>
      </item>
     </layout>
+    <zorder>label</zorder>
+    <zorder>horizontalSliderShiftX</zorder>
+    <zorder>horizontalSliderShiftY</zorder>
+    <zorder>label_2</zorder>
+    <zorder>label_3</zorder>
+    <zorder>horizontalSliderShiftZ</zorder>
+   </widget>
+   <widget class="glView" name="animationViewer">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>-80</y>
+      <width>891</width>
+      <height>621</height>
+     </rect>
+    </property>
    </widget>
    <widget class="QLabel" name="filePathLabel">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>380</y>
+      <x>0</x>
+      <y>430</y>
       <width>204</width>
       <height>46</height>
      </rect>
@@ -182,8 +172,8 @@
    <widget class="QPushButton" name="openFilePushButton">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>430</y>
+      <x>30</x>
+      <y>480</y>
       <width>100</width>
       <height>32</height>
      </rect>
@@ -192,13 +182,233 @@
      <string>PushButton</string>
     </property>
    </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>150</y>
+      <width>211</width>
+      <height>284</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QSlider" name="horizontalSliderShiftX_2">
+       <property name="baseSize">
+        <size>
+         <width>6</width>
+         <height>6</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="minimum">
+        <number>-10</number>
+       </property>
+       <property name="maximum">
+        <number>10</number>
+       </property>
+       <property name="singleStep">
+        <number>1</number>
+       </property>
+       <property name="pageStep">
+        <number>1</number>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+       <property name="tracking">
+        <bool>true</bool>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSlider" name="horizontalSliderShiftY_2">
+       <property name="baseSize">
+        <size>
+         <width>6</width>
+         <height>6</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="minimum">
+        <number>-10</number>
+       </property>
+       <property name="maximum">
+        <number>10</number>
+       </property>
+       <property name="pageStep">
+        <number>1</number>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSlider" name="horizontalSliderShiftZ_2">
+       <property name="baseSize">
+        <size>
+         <width>6</width>
+         <height>6</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="minimum">
+        <number>-22</number>
+       </property>
+       <property name="maximum">
+        <number>-9</number>
+       </property>
+       <property name="singleStep">
+        <number>1</number>
+       </property>
+       <property name="pageStep">
+        <number>1</number>
+       </property>
+       <property name="value">
+        <number>-16</number>
+       </property>
+       <property name="sliderPosition">
+        <number>-16</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSlider" name="horizontalSliderRotX">
+       <property name="baseSize">
+        <size>
+         <width>6</width>
+         <height>6</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="minimum">
+        <number>-10</number>
+       </property>
+       <property name="maximum">
+        <number>10</number>
+       </property>
+       <property name="pageStep">
+        <number>1</number>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSlider" name="horizontalSliderRotY">
+       <property name="baseSize">
+        <size>
+         <width>6</width>
+         <height>6</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="minimum">
+        <number>-10</number>
+       </property>
+       <property name="maximum">
+        <number>10</number>
+       </property>
+       <property name="pageStep">
+        <number>1</number>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSlider" name="horizontalSliderRotZ">
+       <property name="baseSize">
+        <size>
+         <width>6</width>
+         <height>6</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="minimum">
+        <number>-10</number>
+       </property>
+       <property name="maximum">
+        <number>10</number>
+       </property>
+       <property name="pageStep">
+        <number>1</number>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSlider" name="horizontalSliderScale">
+       <property name="baseSize">
+        <size>
+         <width>6</width>
+         <height>6</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="minimum">
+        <number>-10</number>
+       </property>
+       <property name="maximum">
+        <number>10</number>
+       </property>
+       <property name="pageStep">
+        <number>1</number>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1197</width>
      <height>24</height>
     </rect>
    </property>

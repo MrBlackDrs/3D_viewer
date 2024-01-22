@@ -53,5 +53,6 @@ public slots:
     void changeZ(int value);
     void changeY(int value);
     void changeX(int value);
+    void changeX_2(int value);
 };
 #endif // GLVIEW_H

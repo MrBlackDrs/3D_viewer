@@ -26,8 +26,10 @@ void readfile_to_parse(char *filename, object *object) {
     int count_vertex = 1, count_polygons = 1;
     FILE *f = fopen(filename, "r");
     if (f != NULL) {
-        char str[256] = "";
-        while (fgets(str, 256, f) != NULL) {
+        char* str = calloc(512, sizeof(char));
+        char *str_begin = NULL;
+        while (fgets(str, 511, f) != NULL) {
+            str_begin = str;
             if (strncmp(str, "v ", 2) == 0) { // ищем вершины
                 point dot;
                 double x, y, z;
@@ -38,25 +40,44 @@ void readfile_to_parse(char *filename, object *object) {
             }
             else if (strncmp(str, "f ", 2) == 0) {
                 char *vertex_index = NULL;
-                vertex_index = strtok(str + 2, " ");
                 int digit = 0;
                 int len = 1, cur_index = 0;
-                int *str_index;
-                str_index = (int *) calloc(1, sizeof(int));
-                while (vertex_index != NULL) {
-                    digit = atoi(vertex_index);
-                    if (digit) {
-                        if (cur_index == len) {
-                            len++;
-                            str_index = (int *) realloc(str_index, len * sizeof(int));
+                int *str_index = (int *) calloc(1, sizeof(int));
+                while (str != NULL) {
+                    
+                    str = strchr(str, ' ');
+                    if(str) {
+                    str++;
+                        if (strspn(str, "1234567890") > 0) {
+                            digit = atoi(str);
+                            if (cur_index >= len) {
+                                len++;
+                                str_index = (int *) realloc(str_index, len * sizeof(int));
+                            }
+                            str_index[cur_index] = digit;
+                            cur_index++;
                         }
-                        str_index[cur_index] = digit;
-                        cur_index++;
                     }
-                    else
-                        printf("incorrect obj file\n");
-                    vertex_index = strtok(NULL, " ");
                 }
+                // vertex_index = strtok(str + 2, " ");
+                // int digit = 0;
+                // int len = 1, cur_index = 0;
+                // int *str_index;
+                // str_index = (int *) calloc(1, sizeof(int));
+                // while (vertex_index != NULL) {
+                //     digit = atoi(vertex_index);
+                //     if (digit) {
+                //         if (cur_index == len) {
+                //             len++;
+                //             str_index = (int *) realloc(str_index, len * sizeof(int));
+                //         }
+                //         str_index[cur_index] = digit;
+                //         cur_index++;
+                //     }
+                //     else
+                //         printf("incorrect obj file\n");
+                //     vertex_index = strtok(NULL, " ");
+                // }
                 add_polygon(str_index, len, object, count_polygons);
                 count_polygons++;
                 free(str_index);
@@ -64,9 +85,12 @@ void readfile_to_parse(char *filename, object *object) {
             // printf("%s\n", str);
             // работа со строкой и обновление структуры object
             // strcpy(str, "");
-            memset(str,0,sizeof(str));
+            memset(str_begin,0,sizeof(str_begin));
+            str = str_begin;
         }
+        if (str_begin != NULL)
+            free(str_begin);
         fclose(f);
-        normalize(object);
+        s21_normalize(object);
     }
 }

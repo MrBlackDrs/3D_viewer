@@ -6,7 +6,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#endif  // S21_3DVIEWER
+#define AX_X 0
+#define AX_Y 1
+#define AX_Z 2
 
 typedef struct{
     double x;
@@ -58,4 +60,11 @@ void readfile_to_count(char *filename, object *object);
 // заполняем структуру данными из файла
 void readfile_to_parse(char *filename, object *object);
 // нормализуем считанный объект (чтобы занимал область от -1 до 1)
-void normalize(object *obj);
+void s21_normalize(object *obj);
+void s21_change_scale(object *obj, double coef);
+void s21_shift(object *obj, double value, int os);
+void s21_rotate_x(object *obj, double angle);
+void s21_rotate_y(object *obj, double angle);
+void s21_rotate_z(object *obj, double angle);
+
+#endif  // S21_3DVIEWER
