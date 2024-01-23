@@ -12,8 +12,9 @@ void s21_normalize(object *obj) {
 
 
 void s21_change_scale(object *obj, double coef) {
-    for (int i = 0; i < obj->amount_vertex * 3; i++) {
-        obj->vertex[i] *= coef;
+    if (coef > 0.02) {
+        for (int i = 0; i < obj->amount_vertex * 3; i++)
+            obj->vertex[i] *= coef;
     }
 }
 

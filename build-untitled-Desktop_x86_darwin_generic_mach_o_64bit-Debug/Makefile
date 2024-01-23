@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
-DEFINES       = -DQT_QML_DEBUG -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DGIFIMAGE_NO_LIB -DQT_QML_DEBUG -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk -mmacosx-version-min=11 -Wall -Wextra -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -g -std=gnu++1z $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk -mmacosx-version-min=11 -Wall -Wextra -fPIC $(DEFINES)
-INCPATH       = -I../3DTRUE -I. -I/usr/local/lib/QtOpenGLWidgets.framework/Headers -I/usr/local/lib/QtOpenGL.framework/Headers -I/usr/local/lib/QtWidgets.framework/Headers -I/usr/local/lib/QtGui.framework/Headers -I/usr/local/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/AGL.framework/Headers -I/usr/local/share/qt/mkspecs/macx-clang -F/usr/local/lib
+INCPATH       = -I../3DTRUE -I. -I../3DTRUE/3rdparty/QtGifImage/src/gifimage -I../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib -I/usr/local/lib/QtOpenGLWidgets.framework/Headers -I/usr/local/lib/QtOpenGL.framework/Headers -I/usr/local/lib/QtWidgets.framework/Headers -I/usr/local/lib/QtGui.framework/Headers -I/usr/local/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/AGL.framework/Headers -I/usr/local/share/qt/mkspecs/macx-clang -F/usr/local/lib
 QMAKE         = /usr/local/Cellar/qt/6.2.3/bin/qmake6
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -52,19 +52,35 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../3DViewer.c \
+SOURCES       = ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/dgif_lib.c \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/egif_lib.c \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_err.c \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_hash.c \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gifalloc.c \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/quantize.c \
+		../3DTRUE/3rdparty/QtGifImage/src/gifimage/qgifimage.cpp \
+		../3DViewer.c \
 		../athens_transform.c \
 		../parser.c \
 		../3DTRUE/glview.cpp \
 		../3DTRUE/main.cpp \
-		../3DTRUE/mainwindow.cpp moc_glview.cpp \
+		../3DTRUE/mainwindow.cpp qrc_resources.cpp \
+		moc_glview.cpp \
 		moc_mainwindow.cpp
-OBJECTS       = 3DViewer.o \
+OBJECTS       = dgif_lib.o \
+		egif_lib.o \
+		gif_err.o \
+		gif_hash.o \
+		gifalloc.o \
+		quantize.o \
+		qgifimage.o \
+		3DViewer.o \
 		athens_transform.o \
 		parser.o \
 		glview.o \
 		main.o \
 		mainwindow.o \
+		qrc_resources.o \
 		moc_glview.o \
 		moc_mainwindow.o
 DIST          = /usr/local/share/qt/mkspecs/features/spec_pre.prf \
@@ -300,6 +316,8 @@ DIST          = /usr/local/share/qt/mkspecs/features/spec_pre.prf \
 		/usr/local/share/qt/mkspecs/features/mac/toolchain.prf \
 		/usr/local/share/qt/mkspecs/features/default_pre.prf \
 		/usr/local/share/qt/mkspecs/features/mac/default_pre.prf \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib.pri \
+		../3DTRUE/3rdparty/qtgifimage/src/gifimage/qtgifimage.pri \
 		/usr/local/share/qt/mkspecs/features/resolve_config.prf \
 		/usr/local/share/qt/mkspecs/features/default_post.prf \
 		/usr/local/share/qt/mkspecs/features/mac/default_post.prf \
@@ -322,9 +340,19 @@ DIST          = /usr/local/share/qt/mkspecs/features/spec_pre.prf \
 		/usr/local/share/qt/mkspecs/features/exceptions.prf \
 		/usr/local/share/qt/mkspecs/features/yacc.prf \
 		/usr/local/share/qt/mkspecs/features/lex.prf \
-		../3DTRUE/untitled.pro ../3DViewer.h \
+		../3DTRUE/untitled.pro ../3DTRUE/3rdparty/QtGifImage/src/gifimage/qgifglobal.h \
+		../3DTRUE/3rdparty/QtGifImage/src/gifimage/qgifimage.h \
+		../3DTRUE/3rdparty/QtGifImage/src/gifimage/qgifimage_p.h \
+		../3DViewer.h \
 		../3DTRUE/glview.h \
-		../3DTRUE/mainwindow.h ../3DViewer.c \
+		../3DTRUE/mainwindow.h ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/dgif_lib.c \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/egif_lib.c \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_err.c \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_hash.c \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gifalloc.c \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/quantize.c \
+		../3DTRUE/3rdparty/QtGifImage/src/gifimage/qgifimage.cpp \
+		../3DViewer.c \
 		../athens_transform.c \
 		../parser.c \
 		../3DTRUE/glview.cpp \
@@ -587,6 +615,8 @@ Makefile: ../3DTRUE/untitled.pro /usr/local/share/qt/mkspecs/macx-clang/qmake.co
 		/usr/local/share/qt/mkspecs/features/mac/toolchain.prf \
 		/usr/local/share/qt/mkspecs/features/default_pre.prf \
 		/usr/local/share/qt/mkspecs/features/mac/default_pre.prf \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib.pri \
+		../3DTRUE/3rdparty/qtgifimage/src/gifimage/qtgifimage.pri \
 		/usr/local/share/qt/mkspecs/features/resolve_config.prf \
 		/usr/local/share/qt/mkspecs/features/default_post.prf \
 		/usr/local/share/qt/mkspecs/features/mac/default_post.prf \
@@ -610,6 +640,7 @@ Makefile: ../3DTRUE/untitled.pro /usr/local/share/qt/mkspecs/macx-clang/qmake.co
 		/usr/local/share/qt/mkspecs/features/yacc.prf \
 		/usr/local/share/qt/mkspecs/features/lex.prf \
 		../3DTRUE/untitled.pro \
+		../3DTRUE/resources.qrc \
 		/usr/local/lib/QtOpenGLWidgets.framework/Resources/QtOpenGLWidgets.prl \
 		/usr/local/lib/QtOpenGL.framework/Resources/QtOpenGL.prl \
 		/usr/local/lib/QtWidgets.framework/Resources/QtWidgets.prl \
@@ -849,6 +880,8 @@ Makefile: ../3DTRUE/untitled.pro /usr/local/share/qt/mkspecs/macx-clang/qmake.co
 /usr/local/share/qt/mkspecs/features/mac/toolchain.prf:
 /usr/local/share/qt/mkspecs/features/default_pre.prf:
 /usr/local/share/qt/mkspecs/features/mac/default_pre.prf:
+../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib.pri:
+../3DTRUE/3rdparty/qtgifimage/src/gifimage/qtgifimage.pri:
 /usr/local/share/qt/mkspecs/features/resolve_config.prf:
 /usr/local/share/qt/mkspecs/features/default_post.prf:
 /usr/local/share/qt/mkspecs/features/mac/default_post.prf:
@@ -872,6 +905,7 @@ Makefile: ../3DTRUE/untitled.pro /usr/local/share/qt/mkspecs/macx-clang/qmake.co
 /usr/local/share/qt/mkspecs/features/yacc.prf:
 /usr/local/share/qt/mkspecs/features/lex.prf:
 ../3DTRUE/untitled.pro:
+../3DTRUE/resources.qrc:
 /usr/local/lib/QtOpenGLWidgets.framework/Resources/QtOpenGLWidgets.prl:
 /usr/local/lib/QtOpenGL.framework/Resources/QtOpenGL.prl:
 /usr/local/lib/QtWidgets.framework/Resources/QtWidgets.prl:
@@ -893,12 +927,17 @@ untitled.app/Contents/Resources/empty.lproj:
 untitled.app/Contents/Info.plist: 
 	@test -d untitled.app/Contents || mkdir -p untitled.app/Contents
 	@$(DEL_FILE) untitled.app/Contents/Info.plist
-	@sed -e "s,@SHORT_VERSION@,1.0,g" -e "s,\$${QMAKE_SHORT_VERSION},1.0,g" -e "s,@FULL_VERSION@,1.0.0,g" -e "s,\$${QMAKE_FULL_VERSION},1.0.0,g" -e "s,@TYPEINFO@,????,g" -e "s,\$${QMAKE_PKGINFO_TYPEINFO},????,g" -e "s,@BUNDLEIDENTIFIER@,com.yourcompany.untitled,g" -e "s,\$${PRODUCT_BUNDLE_IDENTIFIER},com.yourcompany.untitled,g" -e "s,\$${MACOSX_DEPLOYMENT_TARGET},11,g" -e "s,\$${IPHONEOS_DEPLOYMENT_TARGET},,g" -e "s,\$${TVOS_DEPLOYMENT_TARGET},,g" -e "s,\$${WATCHOS_DEPLOYMENT_TARGET},,g" -e "s,\$${IOS_LAUNCH_SCREEN},LaunchScreen,g" -e "s,@ICON@,,g" -e "s,\$${ASSETCATALOG_COMPILER_APPICON_NAME},,g" -e "s,@EXECUTABLE@,untitled,g" -e "s,@LIBRARY@,untitled,g" -e "s,\$${EXECUTABLE_NAME},untitled,g" -e "s,@TYPEINFO@,????,g" -e "s,\$${QMAKE_PKGINFO_TYPEINFO},????,g" /usr/local/share/qt/mkspecs/macx-clang/Info.plist.app >untitled.app/Contents/Info.plist
+	@sed -e "s,@SHORT_VERSION@,1.0,g" -e "s,\$${QMAKE_SHORT_VERSION},1.0,g" -e "s,@FULL_VERSION@,1.0.0,g" -e "s,\$${QMAKE_FULL_VERSION},1.0.0,g" -e "s,@TYPEINFO@,????,g" -e "s,\$${QMAKE_PKGINFO_TYPEINFO},????,g" -e "s,@BUNDLEIDENTIFIER@,com.yourcompany.untitled,g" -e "s,\$${PRODUCT_BUNDLE_IDENTIFIER},com.yourcompany.untitled,g" -e "s,\$${MACOSX_DEPLOYMENT_TARGET},11,g" -e "s,\$${IPHONEOS_DEPLOYMENT_TARGET},,g" -e "s,\$${TVOS_DEPLOYMENT_TARGET},,g" -e "s,\$${WATCHOS_DEPLOYMENT_TARGET},,g" -e "s,\$${IOS_LAUNCH_SCREEN},LaunchScreen,g" -e "s,@ICON@,AppIcon.icns,g" -e "s,\$${ASSETCATALOG_COMPILER_APPICON_NAME},AppIcon.icns,g" -e "s,@EXECUTABLE@,untitled,g" -e "s,@LIBRARY@,untitled,g" -e "s,\$${EXECUTABLE_NAME},untitled,g" -e "s,@TYPEINFO@,????,g" -e "s,\$${QMAKE_PKGINFO_TYPEINFO},????,g" /usr/local/share/qt/mkspecs/macx-clang/Info.plist.app >untitled.app/Contents/Info.plist
+untitled.app/Contents/Resources/AppIcon.icns: ../3DTRUE/assets/AppIcon.icns
+	@test -d untitled.app/Contents/Resources/ || mkdir -p untitled.app/Contents/Resources/
+	@$(DEL_FILE) untitled.app/Contents/Resources/AppIcon.icns
+	@$(COPY_FILE) ../3DTRUE/assets/AppIcon.icns untitled.app/Contents/Resources/AppIcon.icns
 
 all: Makefile \
 		untitled.app/Contents/PkgInfo \
 		untitled.app/Contents/Resources/empty.lproj \
-		untitled.app/Contents/Info.plist untitled.app/Contents/MacOS/untitled
+		untitled.app/Contents/Info.plist \
+		untitled.app/Contents/Resources/AppIcon.icns untitled.app/Contents/MacOS/untitled
 
 dist: distdir FORCE
 	(cd `dirname $(DISTDIR)` && $(TAR) $(DISTNAME).tar $(DISTNAME) && $(COMPRESS) $(DISTNAME).tar) && $(MOVE) `dirname $(DISTDIR)`/$(DISTNAME).tar.gz . && $(DEL_FILE) -r $(DISTDIR)
@@ -906,9 +945,10 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents ../3DTRUE/resources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/local/share/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../3DViewer.h ../3DTRUE/glview.h ../3DTRUE/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../3DViewer.c ../athens_transform.c ../parser.c ../3DTRUE/glview.cpp ../3DTRUE/main.cpp ../3DTRUE/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../3DTRUE/3rdparty/QtGifImage/src/gifimage/qgifglobal.h ../3DTRUE/3rdparty/QtGifImage/src/gifimage/qgifimage.h ../3DTRUE/3rdparty/QtGifImage/src/gifimage/qgifimage_p.h ../3DViewer.h ../3DTRUE/glview.h ../3DTRUE/mainwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/dgif_lib.c ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/egif_lib.c ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_err.c ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_hash.c ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gifalloc.c ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/quantize.c ../3DTRUE/3rdparty/QtGifImage/src/gifimage/qgifimage.cpp ../3DViewer.c ../athens_transform.c ../parser.c ../3DTRUE/glview.cpp ../3DTRUE/main.cpp ../3DTRUE/mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../3DTRUE/mainwindow.ui $(DISTDIR)/
 
 
@@ -936,8 +976,13 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_resources.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_resources.cpp
+qrc_resources.cpp: ../3DTRUE/resources.qrc \
+		/usr/local/share/qt/libexec/rcc
+	/usr/local/share/qt/libexec/rcc -name resources ../3DTRUE/resources.qrc -o qrc_resources.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
@@ -963,7 +1008,7 @@ moc_glview.cpp: ../3DTRUE/glview.h \
 		../3DViewer.h \
 		moc_predefs.h \
 		/usr/local/share/qt/libexec/moc
-	/usr/local/share/qt/libexec/moc $(DEFINES) --include /Users/mutteria/Desktop/group_projects/3D_viewer/build-untitled-Desktop_x86_darwin_generic_mach_o_64bit-Debug/moc_predefs.h -I/usr/local/share/qt/mkspecs/macx-clang -I/Users/mutteria/Desktop/group_projects/3D_viewer/3DTRUE -I/usr/local/lib/QtOpenGLWidgets.framework/Headers -I/usr/local/lib/QtOpenGL.framework/Headers -I/usr/local/lib/QtWidgets.framework/Headers -I/usr/local/lib/QtGui.framework/Headers -I/usr/local/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/usr/local/lib ../3DTRUE/glview.h -o moc_glview.cpp
+	/usr/local/share/qt/libexec/moc $(DEFINES) --include /Users/mutteria/Desktop/group_projects/3D_viewer/build-untitled-Desktop_x86_darwin_generic_mach_o_64bit-Debug/moc_predefs.h -I/usr/local/share/qt/mkspecs/macx-clang -I/Users/mutteria/Desktop/group_projects/3D_viewer/3DTRUE -I/Users/mutteria/Desktop/group_projects/3D_viewer/3DTRUE/3rdparty/QtGifImage/src/gifimage -I/Users/mutteria/Desktop/group_projects/3D_viewer/3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib -I/usr/local/lib/QtOpenGLWidgets.framework/Headers -I/usr/local/lib/QtOpenGL.framework/Headers -I/usr/local/lib/QtWidgets.framework/Headers -I/usr/local/lib/QtGui.framework/Headers -I/usr/local/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/usr/local/lib ../3DTRUE/glview.h -o moc_glview.cpp
 
 moc_mainwindow.cpp: ../3DTRUE/mainwindow.h \
 		../3DTRUE/glview.h \
@@ -982,9 +1027,25 @@ moc_mainwindow.cpp: ../3DTRUE/mainwindow.h \
 		../3DViewer.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QMainWindow \
 		/usr/local/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QMessageBox \
+		/usr/local/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../3DTRUE/3rdparty/QtGifImage/src/gifimage/qgifimage.h \
+		../3DTRUE/3rdparty/QtGifImage/src/gifimage/qgifglobal.h \
+		/usr/local/lib/QtCore.framework/Headers/QtGlobal \
+		/usr/local/lib/QtCore.framework/Headers/qglobal.h \
+		/usr/local/lib/QtGui.framework/Headers/QImage \
+		/usr/local/lib/QtGui.framework/Headers/qimage.h \
+		/usr/local/lib/QtGui.framework/Headers/QColor \
+		/usr/local/lib/QtGui.framework/Headers/qcolor.h \
+		/usr/local/lib/QtCore.framework/Headers/QList \
+		/usr/local/lib/QtCore.framework/Headers/qlist.h \
+		/usr/local/lib/QtCore.framework/Headers/QVector \
+		/usr/local/lib/QtCore.framework/Headers/qvector.h \
+		/usr/local/lib/QtCore.framework/Headers/QDateTime \
+		/usr/local/lib/QtCore.framework/Headers/qdatetime.h \
 		moc_predefs.h \
 		/usr/local/share/qt/libexec/moc
-	/usr/local/share/qt/libexec/moc $(DEFINES) --include /Users/mutteria/Desktop/group_projects/3D_viewer/build-untitled-Desktop_x86_darwin_generic_mach_o_64bit-Debug/moc_predefs.h -I/usr/local/share/qt/mkspecs/macx-clang -I/Users/mutteria/Desktop/group_projects/3D_viewer/3DTRUE -I/usr/local/lib/QtOpenGLWidgets.framework/Headers -I/usr/local/lib/QtOpenGL.framework/Headers -I/usr/local/lib/QtWidgets.framework/Headers -I/usr/local/lib/QtGui.framework/Headers -I/usr/local/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/usr/local/lib ../3DTRUE/mainwindow.h -o moc_mainwindow.cpp
+	/usr/local/share/qt/libexec/moc $(DEFINES) --include /Users/mutteria/Desktop/group_projects/3D_viewer/build-untitled-Desktop_x86_darwin_generic_mach_o_64bit-Debug/moc_predefs.h -I/usr/local/share/qt/mkspecs/macx-clang -I/Users/mutteria/Desktop/group_projects/3D_viewer/3DTRUE -I/Users/mutteria/Desktop/group_projects/3D_viewer/3DTRUE/3rdparty/QtGifImage/src/gifimage -I/Users/mutteria/Desktop/group_projects/3D_viewer/3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib -I/usr/local/lib/QtOpenGLWidgets.framework/Headers -I/usr/local/lib/QtOpenGL.framework/Headers -I/usr/local/lib/QtWidgets.framework/Headers -I/usr/local/lib/QtGui.framework/Headers -I/usr/local/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/usr/local/lib ../3DTRUE/mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1019,9 +1080,59 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
+
+dgif_lib.o: ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/dgif_lib.c ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_lib.h \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_lib_private.h \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_hash.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o dgif_lib.o ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/dgif_lib.c
+
+egif_lib.o: ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/egif_lib.c ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_lib.h \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_lib_private.h \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_hash.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o egif_lib.o ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/egif_lib.c
+
+gif_err.o: ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_err.c ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_lib.h \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_lib_private.h \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_hash.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o gif_err.o ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_err.c
+
+gif_hash.o: ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_hash.c ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_lib.h \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_hash.h \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_lib_private.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o gif_hash.o ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_hash.c
+
+gifalloc.o: ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gifalloc.c ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_lib.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o gifalloc.o ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gifalloc.c
+
+quantize.o: ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/quantize.c ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_lib.h \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_lib_private.h \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_hash.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o quantize.o ../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/quantize.c
+
+qgifimage.o: ../3DTRUE/3rdparty/QtGifImage/src/gifimage/qgifimage.cpp ../3DTRUE/3rdparty/QtGifImage/src/gifimage/qgifimage.h \
+		../3DTRUE/3rdparty/QtGifImage/src/gifimage/qgifglobal.h \
+		/usr/local/lib/QtCore.framework/Headers/QtGlobal \
+		/usr/local/lib/QtCore.framework/Headers/qglobal.h \
+		/usr/local/lib/QtGui.framework/Headers/QImage \
+		/usr/local/lib/QtGui.framework/Headers/qimage.h \
+		/usr/local/lib/QtGui.framework/Headers/QColor \
+		/usr/local/lib/QtGui.framework/Headers/qcolor.h \
+		/usr/local/lib/QtCore.framework/Headers/QList \
+		/usr/local/lib/QtCore.framework/Headers/qlist.h \
+		/usr/local/lib/QtCore.framework/Headers/QVector \
+		/usr/local/lib/QtCore.framework/Headers/qvector.h \
+		../3DTRUE/3rdparty/QtGifImage/src/gifimage/qgifimage_p.h \
+		../3DTRUE/3rdparty/QtGifImage/src/3rdParty/giflib/gif_lib.h \
+		/usr/local/lib/QtCore.framework/Headers/QFile \
+		/usr/local/lib/QtCore.framework/Headers/qfile.h \
+		/usr/local/lib/QtCore.framework/Headers/QDebug \
+		/usr/local/lib/QtCore.framework/Headers/qdebug.h \
+		/usr/local/lib/QtCore.framework/Headers/QScopedPointer \
+		/usr/local/lib/QtCore.framework/Headers/qscopedpointer.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qgifimage.o ../3DTRUE/3rdparty/QtGifImage/src/gifimage/qgifimage.cpp
 
 3DViewer.o: ../3DViewer.c ../3DViewer.h
 	$(CC) -c $(CFLAGS) $(INCPATH) -o 3DViewer.o ../3DViewer.c
@@ -1066,6 +1177,22 @@ main.o: ../3DTRUE/main.cpp ../3DTRUE/mainwindow.h \
 		../3DViewer.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QMainWindow \
 		/usr/local/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QMessageBox \
+		/usr/local/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../3DTRUE/3rdparty/QtGifImage/src/gifimage/qgifimage.h \
+		../3DTRUE/3rdparty/QtGifImage/src/gifimage/qgifglobal.h \
+		/usr/local/lib/QtCore.framework/Headers/QtGlobal \
+		/usr/local/lib/QtCore.framework/Headers/qglobal.h \
+		/usr/local/lib/QtGui.framework/Headers/QImage \
+		/usr/local/lib/QtGui.framework/Headers/qimage.h \
+		/usr/local/lib/QtGui.framework/Headers/QColor \
+		/usr/local/lib/QtGui.framework/Headers/qcolor.h \
+		/usr/local/lib/QtCore.framework/Headers/QList \
+		/usr/local/lib/QtCore.framework/Headers/qlist.h \
+		/usr/local/lib/QtCore.framework/Headers/QVector \
+		/usr/local/lib/QtCore.framework/Headers/qvector.h \
+		/usr/local/lib/QtCore.framework/Headers/QDateTime \
+		/usr/local/lib/QtCore.framework/Headers/qdatetime.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QApplication \
 		/usr/local/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../3DTRUE/main.cpp
@@ -1087,8 +1214,27 @@ mainwindow.o: ../3DTRUE/mainwindow.cpp ../3DTRUE/mainwindow.h \
 		../3DViewer.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QMainWindow \
 		/usr/local/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QMessageBox \
+		/usr/local/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../3DTRUE/3rdparty/QtGifImage/src/gifimage/qgifimage.h \
+		../3DTRUE/3rdparty/QtGifImage/src/gifimage/qgifglobal.h \
+		/usr/local/lib/QtCore.framework/Headers/QtGlobal \
+		/usr/local/lib/QtCore.framework/Headers/qglobal.h \
+		/usr/local/lib/QtGui.framework/Headers/QImage \
+		/usr/local/lib/QtGui.framework/Headers/qimage.h \
+		/usr/local/lib/QtGui.framework/Headers/QColor \
+		/usr/local/lib/QtGui.framework/Headers/qcolor.h \
+		/usr/local/lib/QtCore.framework/Headers/QList \
+		/usr/local/lib/QtCore.framework/Headers/qlist.h \
+		/usr/local/lib/QtCore.framework/Headers/QVector \
+		/usr/local/lib/QtCore.framework/Headers/qvector.h \
+		/usr/local/lib/QtCore.framework/Headers/QDateTime \
+		/usr/local/lib/QtCore.framework/Headers/qdatetime.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../3DTRUE/mainwindow.cpp
+
+qrc_resources.o: qrc_resources.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_resources.o qrc_resources.cpp
 
 moc_glview.o: moc_glview.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_glview.o moc_glview.cpp

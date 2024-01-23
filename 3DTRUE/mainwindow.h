@@ -3,7 +3,9 @@
 
 #include "glview.h"
 #include <QMainWindow>
-
+#include <QMessageBox>
+#include <qgifimage.h>
+#include <QDateTime>
 
 
 
@@ -23,7 +25,7 @@ public:
     int angle_x;
     int angle_y;
     int angle_z;
-    int scale;
+    double scale;
 
 private slots:
     void on_horizontalSliderShiftZ_valueChanged(int value);
@@ -36,8 +38,14 @@ private slots:
     void on_horizontalSliderRotX_valueChanged(int value);
     void on_horizontalSliderRotY_valueChanged(int value);
     void on_horizontalSliderRotZ_valueChanged(int value);
+    void on_horizontalSliderScale_valueChanged(int value);
 
 private:
     Ui::MainWindow *ui;
+
+    QString gif_name;
+    QGifImage *gif_frame;
+    int frames_counter = 0;
+    QTimer *timer;
 };
 #endif // MAINWINDOW_H

@@ -69,7 +69,7 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayoutWidget = new QWidget(centralwidget);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(0, 0, 201, 171));
+        verticalLayoutWidget->setGeometry(QRect(0, 0, 201, 173));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -257,10 +257,10 @@ public:
         horizontalSliderScale->setObjectName(QString::fromUtf8("horizontalSliderScale"));
         horizontalSliderScale->setBaseSize(QSize(6, 6));
         horizontalSliderScale->setAutoFillBackground(false);
-        horizontalSliderScale->setMinimum(-10);
-        horizontalSliderScale->setMaximum(10);
+        horizontalSliderScale->setMinimum(1);
+        horizontalSliderScale->setMaximum(20);
         horizontalSliderScale->setPageStep(1);
-        horizontalSliderScale->setValue(0);
+        horizontalSliderScale->setValue(10);
         horizontalSliderScale->setOrientation(Qt::Horizontal);
 
         verticalLayout_2->addWidget(horizontalSliderScale);
