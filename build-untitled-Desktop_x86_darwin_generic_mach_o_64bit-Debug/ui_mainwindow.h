@@ -116,12 +116,12 @@ public:
         horizontalSliderShiftZ->setObjectName(QString::fromUtf8("horizontalSliderShiftZ"));
         horizontalSliderShiftZ->setBaseSize(QSize(6, 6));
         horizontalSliderShiftZ->setAutoFillBackground(false);
-        horizontalSliderShiftZ->setMinimum(-22);
-        horizontalSliderShiftZ->setMaximum(-9);
+        horizontalSliderShiftZ->setMinimum(-20);
+        horizontalSliderShiftZ->setMaximum(0);
         horizontalSliderShiftZ->setSingleStep(1);
         horizontalSliderShiftZ->setPageStep(1);
-        horizontalSliderShiftZ->setValue(-16);
-        horizontalSliderShiftZ->setSliderPosition(-16);
+        horizontalSliderShiftZ->setValue(-10);
+        horizontalSliderShiftZ->setSliderPosition(-10);
         horizontalSliderShiftZ->setOrientation(Qt::Horizontal);
 
         verticalLayout->addWidget(horizontalSliderShiftZ);
@@ -186,12 +186,12 @@ public:
         horizontalSliderShiftZ_2->setObjectName(QString::fromUtf8("horizontalSliderShiftZ_2"));
         horizontalSliderShiftZ_2->setBaseSize(QSize(6, 6));
         horizontalSliderShiftZ_2->setAutoFillBackground(false);
-        horizontalSliderShiftZ_2->setMinimum(-22);
-        horizontalSliderShiftZ_2->setMaximum(-9);
+        horizontalSliderShiftZ_2->setMinimum(-35);
+        horizontalSliderShiftZ_2->setMaximum(4);
         horizontalSliderShiftZ_2->setSingleStep(1);
         horizontalSliderShiftZ_2->setPageStep(1);
-        horizontalSliderShiftZ_2->setValue(-16);
-        horizontalSliderShiftZ_2->setSliderPosition(-16);
+        horizontalSliderShiftZ_2->setValue(4);
+        horizontalSliderShiftZ_2->setSliderPosition(4);
         horizontalSliderShiftZ_2->setOrientation(Qt::Horizontal);
 
         verticalLayout_2->addWidget(horizontalSliderShiftZ_2);
@@ -205,8 +205,9 @@ public:
         horizontalSliderRotX->setObjectName(QString::fromUtf8("horizontalSliderRotX"));
         horizontalSliderRotX->setBaseSize(QSize(6, 6));
         horizontalSliderRotX->setAutoFillBackground(false);
-        horizontalSliderRotX->setMinimum(-10);
-        horizontalSliderRotX->setMaximum(10);
+        horizontalSliderRotX->setMinimum(-314);
+        horizontalSliderRotX->setMaximum(314);
+        horizontalSliderRotX->setSingleStep(10);
         horizontalSliderRotX->setPageStep(1);
         horizontalSliderRotX->setValue(0);
         horizontalSliderRotX->setOrientation(Qt::Horizontal);
@@ -222,8 +223,8 @@ public:
         horizontalSliderRotY->setObjectName(QString::fromUtf8("horizontalSliderRotY"));
         horizontalSliderRotY->setBaseSize(QSize(6, 6));
         horizontalSliderRotY->setAutoFillBackground(false);
-        horizontalSliderRotY->setMinimum(-10);
-        horizontalSliderRotY->setMaximum(10);
+        horizontalSliderRotY->setMinimum(-314);
+        horizontalSliderRotY->setMaximum(314);
         horizontalSliderRotY->setPageStep(1);
         horizontalSliderRotY->setValue(0);
         horizontalSliderRotY->setOrientation(Qt::Horizontal);
@@ -239,8 +240,8 @@ public:
         horizontalSliderRotZ->setObjectName(QString::fromUtf8("horizontalSliderRotZ"));
         horizontalSliderRotZ->setBaseSize(QSize(6, 6));
         horizontalSliderRotZ->setAutoFillBackground(false);
-        horizontalSliderRotZ->setMinimum(-10);
-        horizontalSliderRotZ->setMaximum(10);
+        horizontalSliderRotZ->setMinimum(-314);
+        horizontalSliderRotZ->setMaximum(314);
         horizontalSliderRotZ->setPageStep(1);
         horizontalSliderRotZ->setValue(0);
         horizontalSliderRotZ->setOrientation(Qt::Horizontal);
@@ -266,7 +267,7 @@ public:
 
         verticalLayoutWidget_3 = new QWidget(centralwidget);
         verticalLayoutWidget_3->setObjectName(QString::fromUtf8("verticalLayoutWidget_3"));
-        verticalLayoutWidget_3->setGeometry(QRect(10, 640, 221, 101));
+        verticalLayoutWidget_3->setGeometry(QRect(10, 640, 371, 101));
         verticalLayout_3 = new QVBoxLayout(verticalLayoutWidget_3);
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);

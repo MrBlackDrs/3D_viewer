@@ -47,12 +47,18 @@ public:
     void drawObject();
     char *filename;
     object* obj = NULL;
+    object* obj_copy = NULL;
+    void s21_update(int x_shift, int y_shift, int z_shift, int x_rot, int y_rot, int z_rot, int scale);
 private:
     Ui::glView *ui;
+
 public slots:
     void changeZ(int value);
     void changeY(int value);
     void changeX(int value);
-    void changeX_2(int value);
+//    void changeX_2(int value);
+//    void changeY_2(int value);
+//    void changeZ_2(int value);
+//    void rotateX(int value);
 };
 #endif // GLVIEW_H

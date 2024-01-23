@@ -51,6 +51,8 @@ void init_object(object *object, int amount_v, int amount_p);
  void destroy_object(object *object);
  // распечатывает объект
  void print_object(object *obj);
+ // копия объекта
+ void copy_object(object* obj1, object* obj2);
 
 
 /*parser*/
@@ -62,9 +64,16 @@ void readfile_to_parse(char *filename, object *object);
 // нормализуем считанный объект (чтобы занимал область от -1 до 1)
 void s21_normalize(object *obj);
 void s21_change_scale(object *obj, double coef);
-void s21_shift(object *obj, double value, int os);
-void s21_rotate_x(object *obj, double angle);
-void s21_rotate_y(object *obj, double angle);
-void s21_rotate_z(object *obj, double angle);
+void s21_shift(object *obj, double value1, double value2, double value3);
+void s21_rotate_x(object *obj, object *obj_copy, double angle);
+void s21_rotate_y(object *obj, object *obj_copy, double angle);
+void s21_rotate_z(object *obj, object *obj_copy, double angle);
+// централизация
+void s21_centralize (object *obj);
+//возвращает центр, os = 0 - по оси X, 1 - по оси Y, 2 - по оси z
+double get_center (object *obj, int ax);
+//централизует весь обьект по оси, os = 0 - по оси X, 1 - по оси Y, 2 - по оси z
+void set_center(object *obj, int ax, double cent);
+
 
 #endif  // S21_3DVIEWER

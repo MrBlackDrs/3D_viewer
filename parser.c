@@ -92,5 +92,6 @@ void readfile_to_parse(char *filename, object *object) {
             free(str_begin);
         fclose(f);
         s21_normalize(object);
+        s21_centralize(object);
     }
 }

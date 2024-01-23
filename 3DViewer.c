@@ -67,7 +67,8 @@ void init_object(object *object, int amount_v, int amount_p) {
         destroy_vertex(object);
         object->amount_polygon = 0;
         object->amount_vertex = 0;
-        free(object);
+        if (object)
+            free(object);
     }
  }
 
@@ -81,5 +82,18 @@ void init_object(object *object, int amount_v, int amount_p) {
         for (int j = 0; j < obj->p[i].amount_edges; j++)
             printf("%d ", obj->p[i].edges[j]);
         printf("\n");
+    }
+ }
+
+ // копия объекта
+ void copy_object(object* obj1, object* obj2) {
+    init_object(obj2, obj1->amount_vertex -  1, obj1->amount_polygon - 1);
+    for (int i = 1; i < obj1->amount_vertex; i++) {
+        point dot = {0};
+        init_point(obj1->vertex[i * 3], obj1->vertex[i * 3 + 1], obj1->vertex[i * 3 + 2], &dot);
+        add_vertex(dot, obj2, i);
+    }
+    for (int i = 1; i < obj1->amount_polygon; i++) {
+        add_polygon(obj1->p[i].edges, obj1->p[i].amount_edges, obj2, i);
     }
  }

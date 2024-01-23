@@ -82,9 +82,48 @@ void glView::changeY(int value){
     update();
 }
 
-void glView::changeX_2(int value){
+//void glView::changeX_2(int value){
+//    if (obj != NULL) {
+////        s21_shift(obj, value/10.0, AX_X);
+////        update();
+//    }
+//}
+
+//void glView::changeY_2(int value){
+//    if (obj != NULL) {
+////        s21_shift(obj, value/10.0, AX_Y);
+////        update();
+//    }
+//}
+
+//void glView::changeZ_2(int value){
+//    if (obj != NULL) {
+////        s21_shift(obj, value/10.0, AX_Z);
+////        update();
+//    }
+//}
+
+//void glView::rotateX(int value){
+//    if (obj != NULL) {
+//        s21_rotate_x(obj, value/100.0);
+//        update();
+//    }
+//}
+
+void glView::s21_update(int x_shift, int y_shift, int z_shift, int x_rot, int y_rot, int z_rot, int scale) {
     if (obj != NULL) {
-        s21_shift(obj, value/10.0, AX_X);
+        s21_rotate_x(obj, obj_copy, x_rot/100.);
+        s21_rotate_y(obj, obj, y_rot/100.);
+        s21_rotate_z(obj, obj, z_rot/100.);
+
+        s21_shift(obj, x_shift/10., y_shift/10., z_shift/10.);
+
+        qDebug() << "sc:"<< scale << "\n";
+        qDebug() << "X:" << x_shift << "\n";
+        qDebug() << "Y:" << y_shift << "\n";
+        qDebug() << "Z:" << z_shift << "\n";
+
+    //    s21_change_scale(obj, scale);
         update();
     }
 }
@@ -127,9 +166,11 @@ void glView::mouseMoveEvent(QMouseEvent* mo){
 void glView::parse(){
     destroy_object(obj);
     obj = (object *) (calloc(1, sizeof(object)));
+    obj_copy = (object *) (calloc(1, sizeof(object)));
     readfile_to_count(filename, obj);
     readfile_to_parse(filename, obj);
     qDebug() << obj->amount_polygon;
+    copy_object(obj, obj_copy);
     paintGL();
 
     //    print_object(obj);
