@@ -36,17 +36,27 @@ public:
     QLabel *label_3;
     QSlider *horizontalSliderShiftZ;
     glView *animationViewer;
-    QLabel *filePathLabel;
-    QPushButton *openFilePushButton;
     QWidget *verticalLayoutWidget_2;
     QVBoxLayout *verticalLayout_2;
+    QLabel *label_4;
     QSlider *horizontalSliderShiftX_2;
+    QLabel *label_5;
     QSlider *horizontalSliderShiftY_2;
+    QLabel *label_6;
     QSlider *horizontalSliderShiftZ_2;
+    QLabel *label_7;
     QSlider *horizontalSliderRotX;
+    QLabel *label_8;
     QSlider *horizontalSliderRotY;
+    QLabel *label_9;
     QSlider *horizontalSliderRotZ;
+    QLabel *label_10;
     QSlider *horizontalSliderScale;
+    QWidget *verticalLayoutWidget_3;
+    QVBoxLayout *verticalLayout_3;
+    QLabel *filePathLabel;
+    QLabel *modelInfoLabel;
+    QPushButton *openFilePushButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -54,12 +64,12 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1197, 609);
+        MainWindow->resize(1350, 805);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayoutWidget = new QWidget(centralwidget);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(20, 20, 201, 111));
+        verticalLayoutWidget->setGeometry(QRect(0, 0, 201, 171));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -124,20 +134,18 @@ public:
         horizontalSliderShiftZ->raise();
         animationViewer = new glView(centralwidget);
         animationViewer->setObjectName(QString::fromUtf8("animationViewer"));
-        animationViewer->setGeometry(QRect(270, -80, 891, 621));
-        filePathLabel = new QLabel(centralwidget);
-        filePathLabel->setObjectName(QString::fromUtf8("filePathLabel"));
-        filePathLabel->setGeometry(QRect(0, 430, 204, 46));
-        filePathLabel->setAlignment(Qt::AlignCenter);
-        openFilePushButton = new QPushButton(centralwidget);
-        openFilePushButton->setObjectName(QString::fromUtf8("openFilePushButton"));
-        openFilePushButton->setGeometry(QRect(30, 480, 100, 32));
+        animationViewer->setGeometry(QRect(410, 10, 891, 621));
         verticalLayoutWidget_2 = new QWidget(centralwidget);
         verticalLayoutWidget_2->setObjectName(QString::fromUtf8("verticalLayoutWidget_2"));
-        verticalLayoutWidget_2->setGeometry(QRect(20, 150, 211, 284));
+        verticalLayoutWidget_2->setGeometry(QRect(10, 200, 211, 431));
         verticalLayout_2 = new QVBoxLayout(verticalLayoutWidget_2);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
+        label_4 = new QLabel(verticalLayoutWidget_2);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+
+        verticalLayout_2->addWidget(label_4);
+
         horizontalSliderShiftX_2 = new QSlider(verticalLayoutWidget_2);
         horizontalSliderShiftX_2->setObjectName(QString::fromUtf8("horizontalSliderShiftX_2"));
         horizontalSliderShiftX_2->setBaseSize(QSize(6, 6));
@@ -152,6 +160,11 @@ public:
 
         verticalLayout_2->addWidget(horizontalSliderShiftX_2);
 
+        label_5 = new QLabel(verticalLayoutWidget_2);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+
+        verticalLayout_2->addWidget(label_5);
+
         horizontalSliderShiftY_2 = new QSlider(verticalLayoutWidget_2);
         horizontalSliderShiftY_2->setObjectName(QString::fromUtf8("horizontalSliderShiftY_2"));
         horizontalSliderShiftY_2->setBaseSize(QSize(6, 6));
@@ -163,6 +176,11 @@ public:
         horizontalSliderShiftY_2->setOrientation(Qt::Horizontal);
 
         verticalLayout_2->addWidget(horizontalSliderShiftY_2);
+
+        label_6 = new QLabel(verticalLayoutWidget_2);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+
+        verticalLayout_2->addWidget(label_6);
 
         horizontalSliderShiftZ_2 = new QSlider(verticalLayoutWidget_2);
         horizontalSliderShiftZ_2->setObjectName(QString::fromUtf8("horizontalSliderShiftZ_2"));
@@ -178,6 +196,11 @@ public:
 
         verticalLayout_2->addWidget(horizontalSliderShiftZ_2);
 
+        label_7 = new QLabel(verticalLayoutWidget_2);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+
+        verticalLayout_2->addWidget(label_7);
+
         horizontalSliderRotX = new QSlider(verticalLayoutWidget_2);
         horizontalSliderRotX->setObjectName(QString::fromUtf8("horizontalSliderRotX"));
         horizontalSliderRotX->setBaseSize(QSize(6, 6));
@@ -189,6 +212,11 @@ public:
         horizontalSliderRotX->setOrientation(Qt::Horizontal);
 
         verticalLayout_2->addWidget(horizontalSliderRotX);
+
+        label_8 = new QLabel(verticalLayoutWidget_2);
+        label_8->setObjectName(QString::fromUtf8("label_8"));
+
+        verticalLayout_2->addWidget(label_8);
 
         horizontalSliderRotY = new QSlider(verticalLayoutWidget_2);
         horizontalSliderRotY->setObjectName(QString::fromUtf8("horizontalSliderRotY"));
@@ -202,6 +230,11 @@ public:
 
         verticalLayout_2->addWidget(horizontalSliderRotY);
 
+        label_9 = new QLabel(verticalLayoutWidget_2);
+        label_9->setObjectName(QString::fromUtf8("label_9"));
+
+        verticalLayout_2->addWidget(label_9);
+
         horizontalSliderRotZ = new QSlider(verticalLayoutWidget_2);
         horizontalSliderRotZ->setObjectName(QString::fromUtf8("horizontalSliderRotZ"));
         horizontalSliderRotZ->setBaseSize(QSize(6, 6));
@@ -213,6 +246,11 @@ public:
         horizontalSliderRotZ->setOrientation(Qt::Horizontal);
 
         verticalLayout_2->addWidget(horizontalSliderRotZ);
+
+        label_10 = new QLabel(verticalLayoutWidget_2);
+        label_10->setObjectName(QString::fromUtf8("label_10"));
+
+        verticalLayout_2->addWidget(label_10);
 
         horizontalSliderScale = new QSlider(verticalLayoutWidget_2);
         horizontalSliderScale->setObjectName(QString::fromUtf8("horizontalSliderScale"));
@@ -226,10 +264,33 @@ public:
 
         verticalLayout_2->addWidget(horizontalSliderScale);
 
+        verticalLayoutWidget_3 = new QWidget(centralwidget);
+        verticalLayoutWidget_3->setObjectName(QString::fromUtf8("verticalLayoutWidget_3"));
+        verticalLayoutWidget_3->setGeometry(QRect(10, 640, 221, 101));
+        verticalLayout_3 = new QVBoxLayout(verticalLayoutWidget_3);
+        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
+        verticalLayout_3->setContentsMargins(0, 0, 0, 0);
+        filePathLabel = new QLabel(verticalLayoutWidget_3);
+        filePathLabel->setObjectName(QString::fromUtf8("filePathLabel"));
+        filePathLabel->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 191, 117);"));
+        filePathLabel->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_3->addWidget(filePathLabel);
+
+        modelInfoLabel = new QLabel(verticalLayoutWidget_3);
+        modelInfoLabel->setObjectName(QString::fromUtf8("modelInfoLabel"));
+
+        verticalLayout_3->addWidget(modelInfoLabel);
+
+        openFilePushButton = new QPushButton(verticalLayoutWidget_3);
+        openFilePushButton->setObjectName(QString::fromUtf8("openFilePushButton"));
+
+        verticalLayout_3->addWidget(openFilePushButton);
+
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1197, 24));
+        menubar->setGeometry(QRect(0, 0, 1350, 24));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -246,7 +307,15 @@ public:
         label->setText(QCoreApplication::translate("MainWindow", "SHIFT X", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "SHIFT Y", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "SHIFT Z", nullptr));
+        label_4->setText(QCoreApplication::translate("MainWindow", "ATHENS SHIFT X", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow", "ATHENS SHIFT Y", nullptr));
+        label_6->setText(QCoreApplication::translate("MainWindow", "ATHENS SHIFT Z", nullptr));
+        label_7->setText(QCoreApplication::translate("MainWindow", "ATHENS ROTATION X", nullptr));
+        label_8->setText(QCoreApplication::translate("MainWindow", "ATHENS ROTATION Y", nullptr));
+        label_9->setText(QCoreApplication::translate("MainWindow", "ATHENS ROTATION Z", nullptr));
+        label_10->setText(QCoreApplication::translate("MainWindow", "ATHENS CHANGE SCALE", nullptr));
         filePathLabel->setText(QCoreApplication::translate("MainWindow", "PATH", nullptr));
+        modelInfoLabel->setText(QCoreApplication::translate("MainWindow", "Model info:", nullptr));
         openFilePushButton->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
     } // retranslateUi
 

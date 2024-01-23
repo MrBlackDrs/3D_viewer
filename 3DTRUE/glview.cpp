@@ -47,7 +47,7 @@ void glView::paintGL(){
     glLoadIdentity();
     //ПОВЕРНУТЬ СИС-МУ КООРДИНАТ НА КАКОЙ-ТО УГОЛ ПО ОСИ Z, тк 1 для Z
 //    glRotatef(90,0,0,1);
-//    glTranslatef(x,y,z);
+    glTranslatef(x,y,z);
     glRotatef(xRot,1,0,0);
     glRotatef(yRot,0,1,0);
     if(obj!=NULL){
@@ -131,6 +131,7 @@ void glView::parse(){
     readfile_to_parse(filename, obj);
     qDebug() << obj->amount_polygon;
     paintGL();
+
     //    print_object(obj);
 
 }

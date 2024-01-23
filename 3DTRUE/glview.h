@@ -39,7 +39,6 @@ private:
     void initializeGL() override;
     void resizeGL(int w, int h) override;
     void paintGL() override;
-    object* obj = NULL;
 
 public:
     glView(QWidget *parent = nullptr);
@@ -47,6 +46,7 @@ public:
     void parse();
     void drawObject();
     char *filename;
+    object* obj = NULL;
 private:
     Ui::glView *ui;
 public slots:

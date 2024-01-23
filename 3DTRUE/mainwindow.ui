@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1197</width>
-    <height>609</height>
+    <width>1350</width>
+    <height>805</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>20</y>
+      <x>0</x>
+      <y>0</y>
       <width>201</width>
-      <height>111</height>
+      <height>171</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -146,52 +146,30 @@
    <widget class="glView" name="animationViewer">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>-80</y>
+      <x>410</x>
+      <y>10</y>
       <width>891</width>
       <height>621</height>
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="filePathLabel">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>430</y>
-      <width>204</width>
-      <height>46</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PATH</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="openFilePushButton">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>480</y>
-      <width>100</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>150</y>
+      <x>10</x>
+      <y>200</y>
       <width>211</width>
-      <height>284</height>
+      <height>431</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>ATHENS SHIFT X</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <widget class="QSlider" name="horizontalSliderShiftX_2">
        <property name="baseSize">
@@ -227,6 +205,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>ATHENS SHIFT Y</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QSlider" name="horizontalSliderShiftY_2">
        <property name="baseSize">
         <size>
@@ -251,6 +236,13 @@
        </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>ATHENS SHIFT Z</string>
        </property>
       </widget>
      </item>
@@ -289,6 +281,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>ATHENS ROTATION X</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QSlider" name="horizontalSliderRotX">
        <property name="baseSize">
         <size>
@@ -313,6 +312,13 @@
        </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>ATHENS ROTATION Y</string>
        </property>
       </widget>
      </item>
@@ -345,6 +351,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QLabel" name="label_9">
+       <property name="text">
+        <string>ATHENS ROTATION Z</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QSlider" name="horizontalSliderRotZ">
        <property name="baseSize">
         <size>
@@ -369,6 +382,13 @@
        </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_10">
+       <property name="text">
+        <string>ATHENS CHANGE SCALE</string>
        </property>
       </widget>
      </item>
@@ -402,13 +422,52 @@
      </item>
     </layout>
    </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>640</y>
+      <width>221</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QLabel" name="filePathLabel">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 191, 117);</string>
+       </property>
+       <property name="text">
+        <string>PATH</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="modelInfoLabel">
+       <property name="text">
+        <string>Model info:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="openFilePushButton">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1197</width>
+     <width>1350</width>
      <height>24</height>
     </rect>
    </property>
