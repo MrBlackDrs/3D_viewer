@@ -56,9 +56,9 @@ public slots:
     void changeZ(int value);
     void changeY(int value);
     void changeX(int value);
-//    void changeX_2(int value);
-//    void changeY_2(int value);
-//    void changeZ_2(int value);
+    void changeX_2(int value);
+    void changeY_2(int value);
+    void changeZ_2(int value);
 //    void rotateX(int value);
 };
 #endif // GLVIEW_H

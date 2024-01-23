@@ -186,12 +186,12 @@ public:
         horizontalSliderShiftZ_2->setObjectName(QString::fromUtf8("horizontalSliderShiftZ_2"));
         horizontalSliderShiftZ_2->setBaseSize(QSize(6, 6));
         horizontalSliderShiftZ_2->setAutoFillBackground(false);
-        horizontalSliderShiftZ_2->setMinimum(-35);
-        horizontalSliderShiftZ_2->setMaximum(4);
+        horizontalSliderShiftZ_2->setMinimum(-18);
+        horizontalSliderShiftZ_2->setMaximum(-2);
         horizontalSliderShiftZ_2->setSingleStep(1);
         horizontalSliderShiftZ_2->setPageStep(1);
-        horizontalSliderShiftZ_2->setValue(4);
-        horizontalSliderShiftZ_2->setSliderPosition(4);
+        horizontalSliderShiftZ_2->setValue(-10);
+        horizontalSliderShiftZ_2->setSliderPosition(-10);
         horizontalSliderShiftZ_2->setOrientation(Qt::Horizontal);
 
         verticalLayout_2->addWidget(horizontalSliderShiftZ_2);

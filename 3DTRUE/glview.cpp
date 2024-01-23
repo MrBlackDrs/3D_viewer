@@ -82,26 +82,27 @@ void glView::changeY(int value){
     update();
 }
 
-//void glView::changeX_2(int value){
-//    if (obj != NULL) {
-////        s21_shift(obj, value/10.0, AX_X);
-////        update();
-//    }
-//}
+void glView::changeX_2(int value){
+    if (obj != NULL) {
+        s21_shift(obj, value/10.0, AX_X);
+        update();
+    }
+}
 
-//void glView::changeY_2(int value){
-//    if (obj != NULL) {
-////        s21_shift(obj, value/10.0, AX_Y);
-////        update();
-//    }
-//}
+void glView::changeY_2(int value){
+    if (obj != NULL) {
+        s21_shift(obj, value/10.0, AX_Y);
+        update();
+    }
+}
 
-//void glView::changeZ_2(int value){
-//    if (obj != NULL) {
-////        s21_shift(obj, value/10.0, AX_Z);
-////        update();
-//    }
-//}
+void glView::changeZ_2(int value){
+    if (obj != NULL) {
+        s21_shift(obj, value/10.0, AX_Z);
+        qDebug() << "Z:" << value << "\n";
+        update();
+    }
+}
 
 //void glView::rotateX(int value){
 //    if (obj != NULL) {
@@ -116,7 +117,9 @@ void glView::s21_update(int x_shift, int y_shift, int z_shift, int x_rot, int y_
         s21_rotate_y(obj, obj, y_rot/100.);
         s21_rotate_z(obj, obj, z_rot/100.);
 
-        s21_shift(obj, x_shift/10., y_shift/10., z_shift/10.);
+        s21_shift(obj, x_shift/10.0, AX_X);
+        s21_shift(obj, y_shift/10.0, AX_Y);
+        s21_shift(obj, z_shift/10.0, AX_Z);
 
         qDebug() << "sc:"<< scale << "\n";
         qDebug() << "X:" << x_shift << "\n";

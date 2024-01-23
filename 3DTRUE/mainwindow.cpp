@@ -41,40 +41,40 @@ void MainWindow::on_horizontalSliderShiftY_valueChanged(int value)
 //////////// НАШИ ФУНКЦИИ!!!!!!
 void MainWindow::on_horizontalSliderShiftX_2_valueChanged(int value)
 {
-//    ui->animationViewer->changeX_2(value - x_shift);
+    ui->animationViewer->changeX_2(value - x_shift);
     x_shift = value;
-    ui->animationViewer->s21_update(x_shift, y_shift, z_shift, angle_x, angle_y, angle_z, scale);
+//    ui->animationViewer->s21_update(x_shift, y_shift, z_shift, angle_x, angle_y, angle_z, scale);
 }
 
 void MainWindow::on_horizontalSliderShiftY_2_valueChanged(int value)
 {
-//    ui->animationViewer->changeY_2(value - y_shift);
+    ui->animationViewer->changeY_2(value - y_shift);
     y_shift = value;
-    ui->animationViewer->s21_update(x_shift, y_shift, z_shift, angle_x, angle_y, angle_z, scale);
+//    ui->animationViewer->s21_update(x_shift, y_shift, z_shift, angle_x, angle_y, angle_z, scale);
 
 }
 
 void MainWindow::on_horizontalSliderShiftZ_2_valueChanged(int value)
 {
-//    ui->animationViewer->changeZ_2(value - z_shift);
+    ui->animationViewer->changeZ_2(value - z_shift);
     z_shift = value;
-    ui->animationViewer->s21_update(x_shift, y_shift, z_shift, angle_x, angle_y, angle_z, scale);
+//    ui->animationViewer->s21_update(x_shift, y_shift, z_shift, angle_x, angle_y, angle_z, scale);
 }
 //////////////////////////// ротейты
 void MainWindow::on_horizontalSliderRotX_valueChanged(int value) {
     angle_x = value;
-    ui->animationViewer->s21_update(0, 0, 0, angle_x, angle_y, angle_z, scale);
+    ui->animationViewer->s21_update(x_shift, y_shift, z_shift, angle_x, angle_y, angle_z, scale);
 //    ui->animationViewer->rotateX(value);
 }
 
 void MainWindow::on_horizontalSliderRotY_valueChanged(int value) {
     angle_y = value;
-    ui->animationViewer->s21_update(0, 0, 0, angle_x, angle_y, angle_z, scale);
+    ui->animationViewer->s21_update(x_shift, y_shift, z_shift, angle_x, angle_y, angle_z, scale);
 }
 
 void MainWindow::on_horizontalSliderRotZ_valueChanged(int value) {
     angle_z = value;
-    ui->animationViewer->s21_update(0, 0, 0, angle_x, angle_y, angle_z, scale);
+    ui->animationViewer->s21_update(x_shift, y_shift, z_shift, angle_x, angle_y, angle_z, scale);
 }
 
 void MainWindow::on_openFilePushButton_clicked()

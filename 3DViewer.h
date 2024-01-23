@@ -64,7 +64,7 @@ void readfile_to_parse(char *filename, object *object);
 // нормализуем считанный объект (чтобы занимал область от -1 до 1)
 void s21_normalize(object *obj);
 void s21_change_scale(object *obj, double coef);
-void s21_shift(object *obj, double value1, double value2, double value3);
+void s21_shift(object *obj, double value, int os);
 void s21_rotate_x(object *obj, object *obj_copy, double angle);
 void s21_rotate_y(object *obj, object *obj_copy, double angle);
 void s21_rotate_z(object *obj, object *obj_copy, double angle);

@@ -17,11 +17,9 @@ void s21_change_scale(object *obj, double coef) {
     }
 }
 
-void s21_shift(object *obj, double value1, double value2, double value3) {
+void s21_shift(object *obj, double value, int os) {
     for (int i = 1; i < obj->amount_vertex; i++) {
-        obj->vertex[i*3 + 0] += value1;
-        obj->vertex[i*3 + 1] += value2;
-        obj->vertex[i*3 + 2] += value3;
+        obj->vertex[i*3 + os] += value;
     }
 }
 
@@ -29,24 +27,27 @@ void s21_shift(object *obj, double value1, double value2, double value3) {
 void s21_rotate_x(object *obj, object *obj_copy, double angle) {
     for (int i = 1; i < obj->amount_vertex; i++) {
         obj->vertex[i*3 + 0] = obj_copy->vertex[i*3 + 0];
+        double y = obj_copy->vertex[i*3 + 1]; // copy_y
         obj->vertex[i*3 + 1] = cos(angle) * obj_copy->vertex[i*3 + 1] + sin(angle) * obj_copy->vertex[i*3 + 2]; // y
-        obj->vertex[i*3 + 2] = -sin(angle) * obj_copy->vertex[i*3 + 1] + cos(angle) * obj_copy->vertex[i*3 + 2]; // z
+        obj->vertex[i*3 + 2] = -sin(angle) * y + cos(angle) * obj_copy->vertex[i*3 + 2]; // z
     }
 }
 
 void s21_rotate_y(object *obj, object *obj_copy, double angle) {
     for (int i = 1; i < obj->amount_vertex; i++) {
+        double x = obj_copy->vertex[i*3]; // copy_x
         obj->vertex[i*3 + 1] = obj_copy->vertex[i*3 + 1];
         obj->vertex[i*3] = cos(angle) * obj_copy->vertex[i*3] + sin(angle) * obj_copy->vertex[i*3 + 2]; // x
-        obj->vertex[i*3 + 2] = -sin(angle) * obj_copy->vertex[i*3] + cos(angle) * obj_copy->vertex[i*3 + 2]; // z
+        obj->vertex[i*3 + 2] = -sin(angle) * x + cos(angle) * obj_copy->vertex[i*3 + 2]; // z
     }
 }
 
 void s21_rotate_z(object *obj, object *obj_copy, double angle) {
     for (int i = 1; i < obj->amount_vertex; i++) {
         obj->vertex[i*3 + 2] = obj_copy->vertex[i*3 + 2];
+        double x = obj_copy->vertex[i*3]; // copy_x
         obj->vertex[i*3] = cos(angle) * obj_copy->vertex[i*3] + sin(angle) * obj_copy->vertex[i*3 + 1]; // x
-        obj->vertex[i*3 + 1] = -sin(angle) * obj_copy->vertex[i*3] + cos(angle) * obj_copy->vertex[i*3 + 1]; // y
+        obj->vertex[i*3 + 1] = -sin(angle) * x + cos(angle) * obj_copy->vertex[i*3 + 1]; // y
     }
 }
 
