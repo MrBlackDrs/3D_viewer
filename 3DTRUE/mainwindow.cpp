@@ -100,70 +100,72 @@ void MainWindow::on_openFilePushButton_clicked()
 
 }
 
-// void MainWindow::on_snap_btn_clicked() {
-//   if (ui->animationViewer->obj) {
-//     QFileDialog dialogConnectImage(this);
-//     QDateTime current_date = QDateTime::currentDateTime();
-//     QString formattedTime = current_date.toString("yyyy-MM-dd hh.mm.ss");
-//     QString name_pattern = "Screen Shot " + formattedTime + ".jpeg";
-//     QString image_name = dialogConnectImage.getSaveFileName(
-//         this, tr("Save a screenshot"), name_pattern,
-//         tr("image (*.jpeg *.bmp)"));
-//     if (image_name.length() >= 1) {
-//       QImage img = ui->OpenGlWidget->grabFramebuffer();
-//       img.save(image_name);
-//       QMessageBox messageBoxImage;
-//       messageBoxImage.information(0, "", "Screenshot saved successfully");
-//     }
-//   } else {
-//     QMessageBox warning = QMessageBox();
-//     warning.setWindowTitle("Error");
-//     warning.setText("Please open .obj file to take a screenshot");
-//     warning.setIcon(QMessageBox::Warning);
-//     warning.exec();
-//   }
-// }
+ void MainWindow::on_snap_btn_clicked() {
+   if (ui->animationViewer->obj) {
+     QFileDialog dialogConnectImage(this);
+     QDateTime current_date = QDateTime::currentDateTime();
+     QString formattedTime = current_date.toString("yyyy-MM-dd hh.mm.ss");
+     QString name_pattern = "Screen Shot " + formattedTime + ".jpeg";
+     QString image_name = dialogConnectImage.getSaveFileName(
+         this, tr("Save a screenshot"), name_pattern,
+         tr("image (*.jpeg *.bmp)"));
+     if (image_name.length() >= 1) {
+       QImage img = ui->animationViewer->grabFramebuffer();
+       img.save(image_name);
+       QMessageBox messageBoxImage;
+       messageBoxImage.information(0, "", "Screenshot saved successfully");
+     }
+   } else {
+     QMessageBox warning = QMessageBox();
+     warning.setWindowTitle("Error");
+     warning.setText("Please open .obj file to take a screenshot");
+     warning.setIcon(QMessageBox::Warning);
+     warning.exec();
+   }
+ }
 
-// void MainWindow::on_gif_btn_clicked() {
-//   if (ui->animationViewer->obj) {
-//     QDateTime current_date = QDateTime::currentDateTime();
-//     QString formattedTime = current_date.toString("yyyy-MM-dd hh.mm.ss");
-//     QString name_pattern = "Screen Cast " + formattedTime + ".gif";
-//     gif_name = QFileDialog::getSaveFileName(this, tr("Save a gif animation"),
-//                                             name_pattern, tr("gif (*.gif)"));
-//     if (gif_name != "") {
-//       ui->gif_btn->setDisabled(true);
-//       gif_frame = new QGifImage;
-//       gif_frame->setDefaultDelay(10);
-//       timer->setInterval(100);
-//       timer->start();
-//     }
-//   } else {
-//     QMessageBox warning = QMessageBox();
-//     warning.setWindowTitle("Error");
-//     warning.setText("Please open .obj file to take a screencast");
-//     warning.setIcon(QMessageBox::Warning);
-//     warning.exec();
-//   }
-// }
+ void MainWindow::on_gif_btn_clicked() {
+   if (ui->animationViewer->obj) {
+     QDateTime current_date = QDateTime::currentDateTime();
+     QString formattedTime = current_date.toString("yyyy-MM-dd hh.mm.ss");
+     QString name_pattern = "Screen Cast " + formattedTime + ".gif";
+     gif_name = QFileDialog::getSaveFileName(this, tr("Save a gif animation"),
+                                             name_pattern, tr("gif (*.gif)"));
+     if (gif_name != "") {
+       ui->gif_btn->setDisabled(true);
+       gif_frame = new QGifImage;
+       gif_frame->setDefaultDelay(10);
+       timer = new QTimer(this);
+       timer->setInterval(100);
+       connect(timer, SIGNAL(timeout()), this, SLOT(make_gif()));
+       timer->start();
+     }
+   } else {
+     QMessageBox warning = QMessageBox();
+     warning.setWindowTitle("Error");
+     warning.setText("Please open .obj file to take a screencast");
+     warning.setIcon(QMessageBox::Warning);
+     warning.exec();
+   }
+ }
 
-// void MainWindow::make_gif() {
-//   QImage image = ui->OpenGlWidget->grabFramebuffer();
-//   QSize image_size(640, 480);
-//   QImage scaled_image = image.scaled(image_size);
-//   gif_frame->addFrame(scaled_image);
-//   if (frames_counter == 50) {
-//     timer->stop();
-//     gif_frame->save(gif_name);
-//     frames_counter = 0;
-//     QMessageBox messageBoxGif;
-//     messageBoxGif.information(0, "", "Gif animation saved successfully");
-//     delete gif_frame;
-//     ui->gif_btn->setText("");
-//     ui->gif_btn->setEnabled(true);
-//   }
-//   frames_counter++;
-//   if (!ui->gif_btn->isEnabled()) {
-//     ui->gif_btn->setText(QString::number(frames_counter / 10) + "s");
-//   }
-// }
+ void MainWindow::make_gif() {
+   QImage image = ui->animationViewer->grabFramebuffer();
+   QSize image_size(640, 480);
+   QImage scaled_image = image.scaled(image_size);
+   gif_frame->addFrame(scaled_image);
+   if (frames_counter == 50) {
+     timer->stop();
+     gif_frame->save(gif_name);
+     frames_counter = 0;
+     QMessageBox messageBoxGif;
+     messageBoxGif.information(0, "", "Gif animation saved successfully");
+     delete gif_frame;
+     ui->gif_btn->setText("GifButton");
+     ui->gif_btn->setEnabled(true);
+   }
+   frames_counter++;
+   if (!ui->gif_btn->isEnabled()) {
+     ui->gif_btn->setText(QString::number(frames_counter / 10.0) + "s");
+   }
+ }

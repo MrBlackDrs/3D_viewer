@@ -39,10 +39,11 @@ private slots:
     void on_horizontalSliderRotY_valueChanged(int value);
     void on_horizontalSliderRotZ_valueChanged(int value);
     void on_horizontalSliderScale_valueChanged(int value);
-
+    void on_snap_btn_clicked();
+    void on_gif_btn_clicked();
+    void make_gif();
 private:
     Ui::MainWindow *ui;
-
     QString gif_name;
     QGifImage *gif_frame;
     int frames_counter = 0;

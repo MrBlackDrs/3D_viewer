@@ -99,7 +99,7 @@ void glView::changeY_2(int value){
 void glView::changeZ_2(int value){
     if (obj != NULL) {
         s21_shift(obj, value/10.0, AX_Z);
-        qDebug() << "Z:" << value << "\n";
+//        qDebug() << "Z:" << value << "\n";
         update();
     }
 }
@@ -167,7 +167,7 @@ void glView::parse(){
     obj_copy = (object *) (calloc(1, sizeof(object)));
     readfile_to_count(filename, obj);
     readfile_to_parse(filename, obj);
-    qDebug() << obj->amount_polygon;
+//    qDebug() << obj->amount_polygon;
     copy_object(obj, obj_copy);
     paintGL();
 
